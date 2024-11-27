@@ -1,0 +1,7 @@
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home/stoneaccountin/domains/stoneaccounting.com.au/public_html"
+PassengerBaseURI "/"
+PassengerNodejs "/home/stoneaccountin/nodevenv/domains/stoneaccounting.com.au/public_html/18/bin/node"
+PassengerAppType node
+PassengerStartupFile app.js
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END

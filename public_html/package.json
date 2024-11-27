@@ -1,0 +1,47 @@
+{
+  "name": "stone-accounting-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^43.3.1",
+    "@ckeditor/ckeditor5-react": "^9.3.1",
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@studio-freight/lenis": "^1.0.42",
+    "@svgr/webpack": "^8.1.0",
+    "antd": "^5.22.1",
+    "body-parser": "^1.20.2",
+    "bootstrap-icons": "^1.11.3",
+    "clsx": "^2.1.1",
+    "emailjs-com": "^3.2.0",
+    "express": "^4.19.2",
+    "framer-motion": "^11.3.27",
+    "he": "^1.2.0",
+    "next": "^14.2.6",
+    "nodemailer": "^6.9.14",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "stone-accounting-web": "file:",
+    "tailwind-merge": "^2.5.2"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^14.2.5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^8.1.0",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "5.1.6"
+  }
+}

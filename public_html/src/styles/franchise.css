@@ -1,0 +1,237 @@
+/* General Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+
+main {
+    /* padding: 20px; */
+    margin: 0;
+    margin-top: 30px;
+    text-align: left;
+    width: 100%;
+}
+
+/* Franchise Section */
+.franchise-section {
+    padding: 40px 20px;
+    background-color: #fff;
+    max-width: 75%; 
+    margin-top: 40px;
+    /* margin: 0 auto;   */
+    display: flex;
+    flex-direction: column;
+
+}
+
+.franchise-section h1 {
+    text-align: center;
+    color: #6D6E71;
+    font-size: 36px;
+    margin-bottom: 20px;
+    width: 40vh;
+
+}
+
+.franchise-section p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.franchise-content-item p {
+    text-align: justify;
+    color: #4F5665;
+
+}
+
+.franchise-content-item {
+    margin-top: 21px;
+}
+
+/* Franchise content */
+
+.franchise-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between  ;
+    align-items: flex-start ;
+    width: 100%;
+
+}
+
+.franchise-content-header{
+    width: 40%;
+    width: 500px;
+}
+
+.franchise-content-header h1{
+    width: 40%;
+    width: 500px;
+    margin-top: 0;
+    font-weight: bold;
+}
+
+/* Benefits Icons */
+.benefits-icons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.benefits-icons .icon {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, 
+    #01A1FD 0%, 
+    #007AE5 7%, 
+    #0055CD 15%, 
+    #0036BA 24%, 
+    #001EAB 33%, 
+    #0010A0 43%, 
+    #0009A9 53%, 
+    #000098 65%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+    transition: transform 0.3s ease, background 0.8s ease, border 0.3s ease;
+    /* Start with no transform for smoother transition */
+    transform: scale(1);
+}
+
+
+
+
+.benefits-icons .icon p {
+    font-weight: 500;
+    font-size: 16px;
+    color: #fff;
+    margin: 0;
+
+}
+
+.benefits-icons .icon.active {
+    /* border: 3px solid #00aaff; */
+    transform: scale(1.1);
+    background: linear-gradient(135deg, 
+                #00C6FF 0%, 
+                #0072FF 100%);
+}
+
+/* Benefit Details Section */
+.benefit-details .benefit-content {
+    display: none; /* Hide the content initially */
+    font-size: 14px;
+    background-color: #D9D9D9;
+    padding: 40px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.benefit-details .benefit-content.active {
+    display: block;
+}
+
+/* Benefit Details Section */
+.benefit-details {
+    margin: 40px 0;
+}
+
+.benefit-details .benefit-content {
+    display: none; /* Hide the content initially */
+    font-size: 14px;
+}
+
+.benefit-details .benefit-content ul {
+    padding-left: 20px;
+}
+
+.benefit-details .benefit-content ul li {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* CTA Box */
+.cta-box {
+    background-color: #007bff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+}
+
+.cta-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.cta-form input[type="email"] {
+    padding: 10px;
+    border-radius: 20px 0 0 20px;
+    border: none;
+    flex: 1;
+}
+
+.cta-form button {
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+}
+
+.cta-form button:hover {
+    background-color: #003f7f;
+}
+
+.inquiry {
+    background-color: #01019B;
+    width: 100%;
+}
+
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .franchise-section {
+        padding: 20px;
+    }
+
+    .benefits-icons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .benefits-icons .icon {
+        margin-bottom: 20px;
+    }
+
+    .franchise-content {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .franchise-section h1 {
+        width: 100%;
+    }
+}

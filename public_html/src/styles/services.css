@@ -1,0 +1,142 @@
+/* services.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+.services-section {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 15%;
+    margin-top: 6%;
+    min-height: 85vh;
+}
+
+.services-section h1 {
+    color: #6D6E71;
+    font-weight: bold;
+    text-align: center;
+}
+
+.services-section .container {
+    margin-top: 60px;
+}
+.services-section h2{
+    font-size: 60px;
+    color: #6D6E71;
+    margin-bottom: 24px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.services-menu-container {
+    flex: 1;
+    margin-right: 40px;
+}
+
+.services-content-container {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-start;
+    width: 48vw;
+    padding: 32px 60px;
+    background-color: #D9D9D9;
+}
+
+.services-content-container li {
+    list-style-type: circle;
+
+}
+
+.services-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    line-height: 42px;
+    font-size: 20px;
+}
+
+
+.services-menu li {
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: #6D6E71;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.services-menu li.active {
+    color: #fff;
+    background-color: rgb(1 1 155 / var(--tw-bg-opacity));
+}
+
+.service-content {
+    display: none;
+    margin: 0;
+}
+
+.service-content ul{
+    margin: 0;
+    text-align: justify;
+    line-height: 28px;
+
+}
+
+.service-content.active {
+    display: block;
+}
+
+@media (max-width: 991px    ) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        align-items: center;
+    }
+
+    .services-content-container {
+        justify-content: center;
+        width: 80%;
+        align-items: center;
+
+    }
+    .services-section {
+        width:  100%;
+        padding: 40px 5%;
+        justify-content: center;
+        align-items: center ;
+    }
+
+    .services-menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 20px 20px;
+    }
+
+    .services-menu ul {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .services-menu ul li {
+        font-size: 14px;
+
+    }
+
+    
+
+
+}
