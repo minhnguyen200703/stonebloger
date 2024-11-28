@@ -16,6 +16,11 @@ const newsSchema = new mongoose.Schema(
       type: Date,
       default: Date.now, // Ngày tạo
     },
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category", // Reference to the Category model
+      default: null, // Allow news without a category
+    },
   },
   { timestamps: true, versionKey: false }
 );
