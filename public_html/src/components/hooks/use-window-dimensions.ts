@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+"use client";
+
+import { useEffect, useState } from "react";
 
 type Dimensions = {
-  width: number;
-  height: number;
+	width: number;
+	height: number;
 };
 
 const getWindowDimensions = () => {
@@ -27,9 +29,9 @@ const useWindowDimensions = () => {
 
 			handleResize();
 
-			window.addEventListener('resize', handleResize);
+			window.addEventListener("resize", handleResize);
 
-			return () => window.removeEventListener('resize', handleResize);
+			return () => window.removeEventListener("resize", handleResize);
 		}
 	}, []);
 

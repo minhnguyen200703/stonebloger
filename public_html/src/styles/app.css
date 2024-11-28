@@ -1,0 +1,93 @@
+@import './sidebar.css';
+
+.ck .ck-content {
+	height: 300px !important;
+	max-height: 400px !important;
+	border: 1px solid var(--input-border) !important;
+	border-bottom-left-radius: 12px !important;
+	border-bottom-right-radius: 12px !important;
+}
+.ck .ck-content:hover {
+	border: 1px solid var(--box-shadow);
+}
+
+.ck .ck-toolbar {
+	border: 1px solid var(--input-border) !important;
+	border-top-left-radius: 12px !important;
+	border-top-right-radius: 12px !important;
+
+}
+.ck .ck-toolbar:hover {
+  border: 1px solid var(--box-shadow);
+}
+
+.ck.ck-editor__main > .ck-editor__editable {
+	background: var(--dark-background);
+}
+
+.ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+	border-color: var(--dark-grey);
+}
+
+.ck.ck-toolbar {
+	background: var(--dark-background);
+	border-color: var(--dark-grey);
+  /* color: var(--light-text) !important; */
+}
+
+.ck.ck-button:not(.ck-disabled):hover,
+a.ck.ck-button:not(.ck-disabled):hover {
+	background: var(--dark-grey);
+}
+
+.ck.ck-toolbar .ck.ck-toolbar__separator {
+	background: var(--dark-grey);
+}
+.ck.ck-editor__main>.ck-editor__editable {
+	background: var(--dark-background);
+}
+
+.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+	border-color: var(--dark-grey);
+}
+
+.ck.ck-toolbar {
+	background: var(--dark-background);
+	border-color: var(--dark-grey);
+
+	* {
+		color: var(--light-text) !important;
+	}
+}
+
+.ant-form-item-control-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+}
+.ant-form-item-control-input-content {
+  flex: auto;
+  max-width: 100%;
+}
+
+.textEditor .ck .ck-content {
+  min-height: 300px !important;
+  border-bottom-left-radius: 12px !important;
+  border-bottom-right-radius: 12px !important;
+}
+
+.textEditor .ck .ck-toolbar {
+  border-top-left-radius: 12px !important;
+  border-top-right-radius: 12px !important;
+}
+
+.ck.ck-button.ck-on,
+a.ck.ck-button.ck-on {
+  background: #dedede !important;
+}
+
+[data-theme='dark'] .ck.ck-button.ck-on,
+a.ck.ck-button.ck-on {
+  background: rgba(92, 92, 92, 0.9) !important;
+}
