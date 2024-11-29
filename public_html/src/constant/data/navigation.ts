@@ -23,6 +23,10 @@ const navigationData = {
 			href: '/about'
 		},
 		{
+			name: 'News',
+			href: '/news'
+		},
+		{
 			name: 'Our Services',
 			items: [
 				{

@@ -12,6 +12,7 @@ const newsSchema = new mongoose.Schema(
     detail: {
       type: String, // Nội dung bài viết dạng HTML
     },
+    categoryId: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
     createdDate: {
       type: Date,
       default: Date.now, // Ngày tạo

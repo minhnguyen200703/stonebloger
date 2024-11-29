@@ -1,6 +1,6 @@
-import type { NextPage } from 'next';
+import type { NextPage } from "next";
 
-import LandingViews from '@/views/landing';
+import LandingViews from "@/views/landing";
 
 const LandingPage: NextPage = () => {
 	return <LandingViews />;
