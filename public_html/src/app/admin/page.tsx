@@ -1,7 +1,7 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import {
   LaptopOutlined,
@@ -21,9 +21,14 @@ import {
   Table,
   theme,
 } from "antd";
+
+const CKEditor = dynamic(() => import("@ckeditor/ckeditor5-react").then(mod => mod.CKEditor), { ssr: false });
+const ClassicEditor = dynamic(() => import("@ckeditor/ckeditor5-build-classic"), { ssr: false });
+
 const { Header, Content, Sider } = Layout;
 
 const Admin = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState<any>({
     title: "",
     image: "",
@@ -31,67 +36,54 @@ const Admin = () => {
   });
   const [checkId, setCheckId] = useState(null);
   const [dataEdit, setDataEdit] = useState<any>(null);
-  console.log(dataEdit, "dataEdit");
-  const form = Form.useForm();
-  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [news, setNews] = useState([]);
-  const handelFetchApi = async () => {
+
+  const checkAdmin = typeof window !== "undefined" ? localStorage.getItem("email") : null;
+
+  useEffect(() => {
+    if (!checkAdmin) {
+      alert("Bạn không có quyền");
+      setTimeout(() => {
+        router.push("/");
+      }, 300);
+    }
+  }, [checkAdmin]);
+
+  const handleFetchApi = async () => {
     try {
       const response = await fetch(`https://stonebloger-be.onrender.com/news`);
       const data = await response.json();
       setNews(data);
-      console.log(data);
     } catch (error) {
-      //
+      console.error("Error fetching news:", error);
     }
   };
+
   useEffect(() => {
-    handelFetchApi();
+    handleFetchApi();
   }, []);
-  const showDrawer = () => {
-    setOpen(true);
-  };
+
   useEffect(() => {
-    if (checkId != null) {
+    if (checkId != null && dataEdit) {
       setFormData({
         title: dataEdit.title,
         image: dataEdit.image,
         detail: dataEdit.detail,
       });
     }
-  }, [checkId]);
-  const onClose = () => {
-    setOpen(false);
-  };
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
-  const items2: MenuProps["items"] = [LaptopOutlined].map((icon, index) => {
-    const key = String(index + 1);
-    return {
-      key: `sub${key}`,
-      icon: React.createElement(icon),
-      label: `Quản trị blogs`,
-    };
-  });
-  const checkAdmin = localStorage.getItem("email");
-  // useEffect(() => {
-  //   if (!checkAdmin) {
-  //     alert("bạn không có quyền");
-  //     setTimeout(() => {
-  //       router.push("/admin");
-  //     }, 300);
-  //   }
-  // }, [checkAdmin]);
+  }, [checkId, dataEdit]);
+
+  const showDrawer = () => setOpen(true);
+  const onClose = () => setOpen(false);
+
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const formData2 = new FormData();
-      formData2.append("image", file); // Gắn file vào FormData
+      formData2.append("image", file);
 
       try {
-        // Gửi file tới server qua API
         const response = await fetch("https://stonebloger-be.onrender.com/upload-image", {
           method: "POST",
           body: formData2,
@@ -99,37 +91,36 @@ const Admin = () => {
 
         if (response.ok) {
           const data = await response.json();
-          console.log("Ảnh đã được upload:", data);
-          setFormData({
-            ...formData,
+          setFormData((prev: any) => ({
+            ...prev,
             image: data,
-          });
+          }));
         } else {
-          console.error("Lỗi khi upload ảnh:", response.statusText);
+          console.error("Error uploading image:", response.statusText);
         }
       } catch (error) {
-        console.error("Lỗi khi upload ảnh:", error);
+        console.error("Error uploading image:", error);
       }
     }
   };
 
   const handleSave = async () => {
     try {
-      console.log(formData,'formData')
       if (!checkId) {
         const response = await fetch(`https://stonebloger-be.onrender.com/post-news`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(formData), 
+          body: JSON.stringify(formData),
         });
-        const result = await response.json();
-        console.log("Lưu thành công:", result);
-        message.success("Thêm mói thành công");
-        setTimeout(() => {
-          window.location.href = "/news";
-        }, 400);
+        if (response.ok) {
+          message.success("Added successfully");
+          handleFetchApi();
+          setTimeout(() => {
+            window.location.href = "/news";
+          }, 400);
+        }
       } else {
         const response = await fetch(
           `https://stonebloger-be.onrender.com/edit-news/${checkId}`,
@@ -138,23 +129,27 @@ const Admin = () => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({...formData, image : formData.image ? formData.image : dataEdit.image}),
+            body: JSON.stringify({
+              ...formData,
+              image: formData.image || dataEdit.image,
+            }),
           }
         );
-        const result = await response.json();
-        console.log("Lưu thành công:", result);
-        message.success("thành công");
-        handelFetchApi();
+        if (response.ok) {
+          message.success("Edited successfully!");
+          handleFetchApi();
+        }
       }
     } catch (error) {
-      console.error("Lỗi khi lưu bài viết:", error);
+      console.error("Error saving data:", error);
     }
   };
-  const dataSource = news?.map((itc: any, index: any) => ({
+
+  const dataSource = news?.map((itc: any, index: number) => ({
     stt: index + 1,
     key: itc._id,
     title: itc.title,
-    image: "https://stonebloger-be.onrender.com/" + itc.image,
+    image: `https://stonebloger-be.onrender.com/${itc.image}`,
     createdAt: itc.createdAt,
   }));
 
@@ -165,226 +160,132 @@ const Admin = () => {
       key: "stt",
     },
     {
-      title: "title",
+      title: "Title",
       dataIndex: "title",
       key: "title",
     },
     {
-      title: "image",
+      title: "Image",
       dataIndex: "image",
       key: "image",
-      render: (image: any) => {
-        // Loại bỏ "https://stonebloger-be.onrender.com/" nếu nó có ở đầu của URL
-        let imageUrl = image.startsWith("https://stonebloger-be.onrender.com/")
-          ? image.replace("https://stonebloger-be.onrender.com/", "")
-          : image;
-      
-        // Thêm lại "https://stonebloger-be.onrender.com/" nếu imageUrl không có nó
-        if (!imageUrl.startsWith("https://stonebloger-be.onrender.com/")) {
-          imageUrl = "https://stonebloger-be.onrender.com/" + imageUrl;
-        }
-      
-        return <img src={imageUrl} className="w-[100px] h-[100px]" />;
-      }
-      
-      
+      render: (image: string) => <img src={image} alt="news" className="w-24 h-24" />,
     },
     {
-      title: "createdAt",
+      title: "Created At",
       dataIndex: "createdAt",
       key: "createdAt",
-      render: (image: any) => {
-        return <p>{image?.split("T")[0]}</p>;
-      },
+      render: (date: string) => <p>{date.split("T")[0]}</p>,
     },
     {
       title: "Action",
-      render: (image: any) => {
-        return (
-          <div>
-            <Space>
-              <Button
-                onClick={() => {
-                  setCheckId(image.key);
-                  setDataEdit(image);
-                  showDrawer();
-                }}
-              >
-                Sửa
-              </Button>
-              <Button
-                onClick={async () => {
-                  if (window.confirm("bạn có muốn xoá nó ?")) {
-                    const res = await fetch(
-                      `https://stonebloger-be.onrender.com/new1/` + image.key
-                    );
-                    message.success("Thành công");
-                    handelFetchApi();
-                  }
-                }}
-                className="bg-red-500 text-white font-medium"
-              >
-                Xoá
-              </Button>
-            </Space>
-          </div>
-        );
-      },
+      render: (record: any) => (
+        <Space>
+          <Button
+            onClick={() => {
+              setCheckId(record.key);
+              setDataEdit(record);
+              showDrawer();
+            }}
+          >
+            Edit
+          </Button>
+          <Button
+            onClick={async () => {
+              if (typeof window !== "undefined" && window.confirm("Do you want to delete it?")) {
+                await fetch(`https://stonebloger-be.onrender.com/news/${record.key}`, {
+                  method: "DELETE",
+                });
+                message.success("Deleted successfully!");
+                handleFetchApi();
+              }
+            }}
+            danger
+          >
+            Delete
+          </Button>
+        </Space>
+      ),
     },
   ];
-  console.log(formData, "formData.image ");
+
   return (
     <>
       <Drawer
-        title={checkId ? "Sửa bài viết" : "Thêm bài viết"}
+        title={checkId ? "Edit News" : "Add News"}
         onClose={onClose}
         open={open}
         width={800}
       >
-        <div>
-          <div className="mb-4">
-            <label htmlFor="title" className="block font-bold mb-1">
-              Tiêu đề
-            </label>
+        <Form layout="vertical">
+          <Form.Item label="Title">
             <input
               type="text"
-              id="title"
-              className="w-full border px-3 py-2 rounded-md"
               value={formData.title}
               onChange={(e) =>
-                setFormData({ ...formData, title: e.target.value })
+                setFormData((prev: any) => ({
+                  ...prev,
+                  title: e.target.value,
+                }))
               }
-              placeholder="Nhập tiêu đề bài viết"
+              className="w-full px-3 py-2 border rounded"
             />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="image" className="block font-bold mb-1">
-              Ảnh
-            </label>
+          </Form.Item>
+          <Form.Item label="Image">
             <input
               type="file"
-              id="image"
-              className="w-full border px-3 py-2 rounded-md"
               accept="image/*"
               onChange={handleImageChange}
+              className="w-full"
             />
             {formData.image && (
               <img
-                src={
-                  formData.image.startsWith("https://stonebloger-be.onrender.com/")
-                    ? formData.image
-                    : "https://stonebloger-be.onrender.com/" + formData.image
-                }
+                src={formData.image}
                 alt="Preview"
-                className="mt-2 w-48 h-48 object-cover border rounded-md"
+                className="mt-3 w-48 h-48 object-cover"
               />
             )}
-          </div>
-          <CKEditor
-            editor={ClassicEditor}
-            data="<p>Viết nội dung tại đây...</p>"
-            onReady={(editor) => {
-              // Tùy chỉnh upload ảnh
-              editor.plugins.get("FileRepository").createUploadAdapter = (
-                loader
-              ) => {
-                return {
-                  upload: async () => {
-                    const file = (await loader.file) as any; // Lấy file từ loader
-                    const formData = new FormData();
-                    formData.append("image", file);
-                    try {
-                      const response = await fetch(
-                        "https://stonebloger-be.onrender.com/upload-image",
-                        {
-                          method: "POST",
-                          body: formData,
-                        }
-                      );
-                      if (response.ok) {
-                        const data = await response.json();
-                        return {
-                          default: "https://stonebloger-be.onrender.com/" + data, // Trả về URL ảnh
-                        };
-                      } else {
-                        throw new Error("Failed to upload image");
-                      }
-                    } catch (error) {
-                      console.error("Lỗi upload ảnh:", error);
-                      throw error;
-                    }
-                  },
-                  abort: () => {
-                    console.log("Upload ảnh đã bị hủy.");
-                  },
-                };
-              };
-            }}
-            onChange={(event, editor) => {
-              const data = editor.getData();
-              setFormData({
-                ...formData,
-                detail: data, // Lưu nội dung HTML
-              });
-            }}
-          />
-
-          <button
-            className="bg-green-500 text-white font-bold px-3 py-2 rounded-md mt-4"
-            onClick={handleSave}
-          >
-            Lưu bài viết
-          </button>
-        </div>
+          </Form.Item>
+          <Form.Item label="Details">
+            <CKEditor
+              editor={ClassicEditor}
+              data={formData.detail}
+              onChange={(event, editor) => {
+                setFormData((prev: any) => ({
+                  ...prev,
+                  detail: editor.getData(),
+                }));
+              }}
+            />
+          </Form.Item>
+          <Button type="primary" onClick={handleSave}>
+            Save
+          </Button>
+        </Form>
       </Drawer>
       <Layout>
-        <Header style={{ display: "flex", alignItems: "center" }}>
-          <div className="demo-logo" />
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            defaultSelectedKeys={["2"]}
-            style={{ flex: 1, minWidth: 0 }}
-          />
+        <Header>
+          <Menu theme="dark" mode="horizontal" />
         </Header>
         <Layout>
-          <Sider width={200} style={{ background: colorBgContainer }}>
+          <Sider width={200}>
             <Menu
               mode="inline"
               defaultSelectedKeys={["1"]}
-              defaultOpenKeys={["sub1"]}
-              style={{ height: "100%", borderRight: 0 }}
-              items={items2}
+              items={[
+                {
+                  key: "1",
+                  icon: <LaptopOutlined />,
+                  label: "Blog Administration",
+                },
+              ]}
             />
           </Sider>
-          <Layout style={{ padding: "0 24px 24px" }}>
-            <Breadcrumb
-              items={[{ title: "Home" }, { title: "List" }, { title: "App" }]}
-              style={{ margin: "16px 0" }}
-            />
-            <Content
-              style={{
-                padding: 24,
-                margin: 0,
-                minHeight: 280,
-                background: colorBgContainer,
-                borderRadius: borderRadiusLG,
-              }}
-            >
-              <div className="flex justify-end">
-                <Button
-                  onClick={() => {
-                    showDrawer();
-                    setCheckId(null);
-                  }}
-                  className="bg-green-500 text-white font-medium"
-                >
-                  Thêm mới
-                </Button>
-              </div>
-              <Table dataSource={dataSource} columns={columns} />
-            </Content>
-          </Layout>
+          <Content style={{ padding: 24 }}>
+            <Button type="primary" onClick={showDrawer}>
+              Add News
+            </Button>
+            <Table dataSource={dataSource} columns={columns} />
+          </Content>
         </Layout>
       </Layout>
     </>
