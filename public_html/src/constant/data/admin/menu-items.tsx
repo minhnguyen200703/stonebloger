@@ -3,13 +3,13 @@ import { EditOutlined, TagOutlined } from "@ant-design/icons";
 export const menuItems = [
   {
     id: "blogs",
-    name: "Bài viết",
+    name: "Posts",
     icon: <EditOutlined />,
     url: "/admin/news",
   },
   {
     id: "category",
-    name: "Danh mục bài viết",
+    name: "Categories",
     icon: <TagOutlined />,
     url: "/admin/categories",
   },

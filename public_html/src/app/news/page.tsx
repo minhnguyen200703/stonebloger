@@ -57,7 +57,7 @@ const page = () => {
 		const handelFetchApi = async () => {
 			try {
 				const data = await getCategories({ start: PAGE, limit: PAGE_SIZE });
-				setCategories([{ name: "Tất cả", _id: undefined }, ...data?.data]);
+				setCategories([{ name: "All", _id: undefined }, ...data?.data]);
 			} catch (error) {
 				//
 			}
@@ -90,8 +90,10 @@ const page = () => {
 	return (
 		<main className="mt-[80px]">
 			<section className="text-center py-8">
-				<h1 className="text-6xl font-bold text-blue-600">NEWS</h1>
-				<p className="text-gray-500 mt-2">MONDAY | DECEMBER 19, 2022</p>
+				<h1 style={{ color: "#0419DC", marginBottom: 0 }} className="text-8xl font-bold text-blue-600">
+					NEWS
+				</h1>
+				<p style={{ color: "black" }} className="text-gray-500 mt-2 font-bold">MONDAY | DECEMBER 19, 2022</p>
 			</section>
 			<section className="relative">
 				<img
@@ -105,9 +107,7 @@ const page = () => {
 					</h2>
 
 					<p className="mt-4 absolute bottom-[100px] pl-3 ">
-						The called object, which has flown Montana to Kansas, an
-						"intelligence <br /> gathering" balloon. Beijing said it was used
-						mainly for weather research and had strayed off course.
+					The Pentagon called the object, which has flown from Montana to Kansas, an “intelligence gathering” balloon. Beijing said it was used mainly for weather research and had strayed off course.
 					</p>
 				</div>
 			</section>
@@ -129,11 +129,11 @@ const page = () => {
 										e.preventDefault();
 										setSelectedCatIdx(index);
 									}}
-									className={`${
-										active
-											? "text-white px-2 border-b-2 bg-slate-700 border-blue-600 cursor-pointer"
+									className={`${active
+											? "text-white px-2 bg-slate-700 border-blue-600 cursor-pointer"
 											: "text-gray-700 hover:text-primary cursor-pointer"
-									}`}
+										} ${index === 0 ? "border-l-4 border-blue-600" : "border-b-2"} `}
+									style={index === 0 ? { minWidth: "80px" } : undefined}
 								>
 									{name}
 								</a>

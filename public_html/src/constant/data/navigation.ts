@@ -23,10 +23,6 @@ const navigationData = {
 			href: '/about'
 		},
 		{
-			name: 'News',
-			href: '/news'
-		},
-		{
 			name: 'Our Services',
 			items: [
 				{
@@ -65,6 +61,10 @@ const navigationData = {
 				},
 			],
 			href:'/franchise'
+		},
+		{
+			name: 'Blog/News',
+			href: '/news'
 		},
 		{
 			name: 'Contact',

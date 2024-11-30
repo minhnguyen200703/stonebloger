@@ -7,7 +7,7 @@ interface EmailLayoutProps {
 }
 
 export const metadata: Metadata = {
-  title: "Danh mục bài viết",
+  title: "Category",
 };
 
 export default function EmailLayout({ children }: EmailLayoutProps) {
