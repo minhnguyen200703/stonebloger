@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
+import dynamicImport from "next/dynamic"; // Renamed the import to avoid conflict
 import { useRouter } from "next/navigation";
 import { LaptopOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
@@ -17,13 +17,15 @@ import {
   theme,
 } from "antd";
 
+// Force dynamic rendering for the page
+export const runtime = "force-dynamic";
+
 const { Header, Content, Sider } = Layout;
 
 // Dynamically import CKEditor with SSR disabled
-const CKEditor = dynamic<any>(() =>
-  import("@ckeditor/ckeditor5-react").then((mod) => mod.CKEditor),
-  { ssr: false }
-);
+const CKEditor = dynamicImport(() => import("@ckeditor/ckeditor5-react").then((mod) => mod.CKEditor), {
+  ssr: false,
+});
 
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
@@ -39,7 +41,9 @@ const Admin = () => {
   const [news, setNews] = useState<any[]>([]);
   const router = useRouter();
 
-  const { token: { colorBgContainer, borderRadiusLG } } = theme.useToken();
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
 
   // Fetch API data
   const handleFetchApi = async () => {
@@ -49,6 +53,7 @@ const Admin = () => {
       setNews(data);
     } catch (error) {
       console.error("Error fetching news:", error);
+      message.error("Failed to fetch news.");
     }
   };
 
@@ -77,9 +82,11 @@ const Admin = () => {
           setFormData((prev) => ({ ...prev, image: data }));
         } else {
           console.error("Error uploading image:", response.statusText);
+          message.error("Failed to upload image.");
         }
       } catch (error) {
         console.error("Error uploading image:", error);
+        message.error("Error uploading image.");
       }
     }
   };
@@ -94,8 +101,10 @@ const Admin = () => {
           body: JSON.stringify(formData),
         });
         if (response.ok) {
-          message.success("Added successfully!");
+          message.success("News added successfully!");
           handleFetchApi();
+        } else {
+          message.error("Failed to add news.");
         }
       } else {
         const response = await fetch(`https://stonebloger-be.onrender.com/edit-news/${checkId}`, {
@@ -107,13 +116,16 @@ const Admin = () => {
           }),
         });
         if (response.ok) {
-          message.success("Updated successfully!");
+          message.success("News updated successfully!");
           handleFetchApi();
+        } else {
+          message.error("Failed to update news.");
         }
       }
       setOpen(false);
     } catch (error) {
-      console.error("Error saving data:", error);
+      console.error("Error saving news:", error);
+      message.error("Error saving news.");
     }
   };
 
@@ -133,29 +145,45 @@ const Admin = () => {
       title: "Image",
       dataIndex: "image",
       key: "image",
-      render: (image: string) => <img src={image} alt="News" style={{ width: 100, height: 100 }} />,
+      render: (image: string) => (
+        <img src={image} alt="News" style={{ width: 100, height: 100 }} />
+      ),
     },
     { title: "Created At", dataIndex: "createdAt", key: "createdAt" },
     {
       title: "Action",
       render: (record: any) => (
         <Space>
-          <Button onClick={() => {
-            setCheckId(record.key);
-            setDataEdit(record);
-            showDrawer();
-          }}>
+          <Button
+            onClick={() => {
+              setCheckId(record.key);
+              setDataEdit(record);
+              showDrawer();
+            }}
+          >
             Edit
           </Button>
           <Button
             danger
             onClick={async () => {
               if (typeof window !== "undefined" && window.confirm("Are you sure?")) {
-                await fetch(`https://stonebloger-be.onrender.com/new1/${record.key}`, {
-                  method: "DELETE",
-                });
-                message.success("Deleted successfully!");
-                handleFetchApi();
+                try {
+                  const response = await fetch(
+                    `https://stonebloger-be.onrender.com/new1/${record.key}`,
+                    {
+                      method: "DELETE",
+                    }
+                  );
+                  if (response.ok) {
+                    message.success("News deleted successfully!");
+                    handleFetchApi();
+                  } else {
+                    message.error("Failed to delete news.");
+                  }
+                } catch (error) {
+                  console.error("Error deleting news:", error);
+                  message.error("Error deleting news.");
+                }
               }
             }}
           >
@@ -176,25 +204,54 @@ const Admin = () => {
           <Menu
             mode="inline"
             defaultSelectedKeys={["1"]}
-            items={[{
-              key: "1",
-              icon: <LaptopOutlined />,
-              label: "Blog Administration",
-            }]}
+            items={[
+              {
+                key: "1",
+                icon: <LaptopOutlined />,
+                label: "Blog Administration",
+              },
+            ]}
           />
         </Sider>
         <Layout>
-          <Content style={{ margin: "24px 16px", padding: 24, background: colorBgContainer, borderRadius: borderRadiusLG }}>
-            <Button type="primary" onClick={showDrawer}>Add News</Button>
+          <Content
+            style={{
+              margin: "24px 16px",
+              padding: 24,
+              background: colorBgContainer,
+              borderRadius: borderRadiusLG,
+            }}
+          >
+            <Button type="primary" onClick={showDrawer}>
+              Add News
+            </Button>
             <Table dataSource={dataSource} columns={columns} style={{ marginTop: 24 }} />
           </Content>
         </Layout>
       </Layout>
-      <Drawer title={checkId ? "Edit News" : "Add News"} open={open} onClose={onClose} width={800}>
+      <Drawer
+        title={checkId ? "Edit News" : "Add News"}
+        open={open}
+        onClose={onClose}
+        width={800}
+      >
         <div>
-          <input type="text" placeholder="Title" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} />
+          <input
+            type="text"
+            placeholder="Title"
+            value={formData.title}
+            onChange={(e) =>
+              setFormData({ ...formData, title: e.target.value })
+            }
+          />
           <input type="file" accept="image/*" onChange={handleImageChange} />
-          {formData.image && <img src={formData.image} alt="Preview" style={{ width: 100, height: 100 }} />}
+          {formData.image && (
+            <img
+              src={formData.image}
+              alt="Preview"
+              style={{ width: 100, height: 100 }}
+            />
+          )}
           <CKEditor
             editor={ClassicEditor}
             data={formData.detail}
@@ -203,7 +260,9 @@ const Admin = () => {
               setFormData({ ...formData, detail: data });
             }}
           />
-          <Button type="primary" onClick={handleSave}>Save</Button>
+          <Button type="primary" onClick={handleSave}>
+            Save
+          </Button>
         </div>
       </Drawer>
     </Layout>
