@@ -1,31 +1,18 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import dynamicImport from "next/dynamic"; // Renamed the import to avoid conflict
-import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 import { LaptopOutlined } from "@ant-design/icons";
-import type { MenuProps } from "antd";
-import {
-  Breadcrumb,
-  Button,
-  Drawer,
-  Layout,
-  Menu,
-  message,
-  Space,
-  Table,
-  theme,
-} from "antd";
-
-// Force dynamic rendering for the page
-export const runtime = "force-dynamic";
+import { Breadcrumb, Button, Drawer, Layout, Menu, message, Space, Table, theme } from "antd";
 
 const { Header, Content, Sider } = Layout;
 
-// Dynamically import CKEditor with SSR disabled
-const CKEditor = dynamicImport(() => import("@ckeditor/ckeditor5-react").then((mod) => mod.CKEditor), {
-  ssr: false,
-});
+// Dynamically import CKEditor and explicitly type it as `any`
+const CKEditor: any = dynamic(
+  () =>
+    import("@ckeditor/ckeditor5-react").then((mod) => mod.CKEditor),
+  { ssr: false }
+);
 
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
@@ -39,104 +26,53 @@ const Admin = () => {
   const [dataEdit, setDataEdit] = useState<any>(null);
   const [open, setOpen] = useState(false);
   const [news, setNews] = useState<any[]>([]);
-  const router = useRouter();
 
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
-
-  // Fetch API data
-  const handleFetchApi = async () => {
-    try {
-      const response = await fetch(`https://stonebloger-be.onrender.com/news`);
-      const data = await response.json();
-      setNews(data);
-    } catch (error) {
-      console.error("Error fetching news:", error);
-      message.error("Failed to fetch news.");
-    }
-  };
+  const { token: { colorBgContainer, borderRadiusLG } } = theme.useToken();
 
   useEffect(() => {
-    handleFetchApi();
+    const fetchNews = async () => {
+      try {
+        const response = await fetch("https://stonebloger-be.onrender.com/news");
+        const data = await response.json();
+        setNews(data);
+      } catch (error) {
+        message.error("Failed to fetch news.");
+      }
+    };
+
+    fetchNews();
   }, []);
 
-  // Handle drawer open/close
-  const showDrawer = () => setOpen(true);
-  const onClose = () => setOpen(false);
-
-  // Handle file input change
-  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const formData2 = new FormData();
-      formData2.append("image", file);
-
-      try {
-        const response = await fetch("https://stonebloger-be.onrender.com/upload-image", {
-          method: "POST",
-          body: formData2,
-        });
-        if (response.ok) {
-          const data = await response.json();
-          setFormData((prev) => ({ ...prev, image: data }));
-        } else {
-          console.error("Error uploading image:", response.statusText);
-          message.error("Failed to upload image.");
-        }
-      } catch (error) {
-        console.error("Error uploading image:", error);
-        message.error("Error uploading image.");
-      }
-    }
-  };
-
-  // Save data
   const handleSave = async () => {
     try {
-      if (!checkId) {
-        const response = await fetch("https://stonebloger-be.onrender.com/post-news", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        });
-        if (response.ok) {
-          message.success("News added successfully!");
-          handleFetchApi();
-        } else {
-          message.error("Failed to add news.");
-        }
+      const response = checkId
+        ? await fetch(`https://stonebloger-be.onrender.com/edit-news/${checkId}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ...formData, image: formData.image || dataEdit.image }),
+          })
+        : await fetch("https://stonebloger-be.onrender.com/post-news", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+          });
+
+      if (response.ok) {
+        message.success(checkId ? "News updated successfully!" : "News added successfully!");
+        const refreshNews = async () => {
+          const res = await fetch("https://stonebloger-be.onrender.com/news");
+          const data = await res.json();
+          setNews(data);
+        };
+        refreshNews();
+        setOpen(false);
       } else {
-        const response = await fetch(`https://stonebloger-be.onrender.com/edit-news/${checkId}`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ...formData,
-            image: formData.image || dataEdit.image,
-          }),
-        });
-        if (response.ok) {
-          message.success("News updated successfully!");
-          handleFetchApi();
-        } else {
-          message.error("Failed to update news.");
-        }
+        message.error("Error saving news.");
       }
-      setOpen(false);
     } catch (error) {
-      console.error("Error saving news:", error);
       message.error("Error saving news.");
     }
   };
-
-  // Table data
-  const dataSource = news.map((item, index) => ({
-    stt: index + 1,
-    key: item._id,
-    title: item.title,
-    image: `https://stonebloger-be.onrender.com/${item.image}`,
-    createdAt: item.createdAt.split("T")[0],
-  }));
 
   const columns = [
     { title: "#", dataIndex: "stt", key: "stt" },
@@ -145,43 +81,28 @@ const Admin = () => {
       title: "Image",
       dataIndex: "image",
       key: "image",
-      render: (image: string) => (
-        <img src={image} alt="News" style={{ width: 100, height: 100 }} />
-      ),
+      render: (image: string) => <img src={image} alt="Preview" style={{ width: 100, height: 100 }} />,
     },
     { title: "Created At", dataIndex: "createdAt", key: "createdAt" },
     {
-      title: "Action",
+      title: "Actions",
       render: (record: any) => (
         <Space>
-          <Button
-            onClick={() => {
-              setCheckId(record.key);
-              setDataEdit(record);
-              showDrawer();
-            }}
-          >
-            Edit
-          </Button>
+          <Button onClick={() => { setCheckId(record.key); setDataEdit(record); setOpen(true); }}>Edit</Button>
           <Button
             danger
             onClick={async () => {
-              if (typeof window !== "undefined" && window.confirm("Are you sure?")) {
+              if (window.confirm("Are you sure you want to delete this?")) {
                 try {
-                  const response = await fetch(
-                    `https://stonebloger-be.onrender.com/new1/${record.key}`,
-                    {
-                      method: "DELETE",
-                    }
-                  );
-                  if (response.ok) {
-                    message.success("News deleted successfully!");
-                    handleFetchApi();
-                  } else {
-                    message.error("Failed to delete news.");
-                  }
+                  await fetch(`https://stonebloger-be.onrender.com/new1/${record.key}`, { method: "DELETE" });
+                  message.success("News deleted successfully!");
+                  const refreshNews = async () => {
+                    const res = await fetch("https://stonebloger-be.onrender.com/news");
+                    const data = await res.json();
+                    setNews(data);
+                  };
+                  refreshNews();
                 } catch (error) {
-                  console.error("Error deleting news:", error);
                   message.error("Error deleting news.");
                 }
               }
@@ -205,65 +126,53 @@ const Admin = () => {
             mode="inline"
             defaultSelectedKeys={["1"]}
             items={[
-              {
-                key: "1",
-                icon: <LaptopOutlined />,
-                label: "Blog Administration",
-              },
+              { key: "1", icon: <LaptopOutlined />, label: "Blog Administration" },
             ]}
           />
         </Sider>
         <Layout>
-          <Content
-            style={{
-              margin: "24px 16px",
-              padding: 24,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-            }}
-          >
-            <Button type="primary" onClick={showDrawer}>
-              Add News
-            </Button>
-            <Table dataSource={dataSource} columns={columns} style={{ marginTop: 24 }} />
+          <Content style={{ margin: "24px 16px", padding: 24, background: colorBgContainer, borderRadius: borderRadiusLG }}>
+            <Button type="primary" onClick={() => setOpen(true)}>Add News</Button>
+            <Table dataSource={news.map((item, index) => ({ ...item, stt: index + 1 }))} columns={columns} style={{ marginTop: 24 }} />
           </Content>
         </Layout>
       </Layout>
       <Drawer
         title={checkId ? "Edit News" : "Add News"}
         open={open}
-        onClose={onClose}
+        onClose={() => setOpen(false)}
         width={800}
       >
-        <div>
-          <input
-            type="text"
-            placeholder="Title"
-            value={formData.title}
-            onChange={(e) =>
-              setFormData({ ...formData, title: e.target.value })
+        <input
+          type="text"
+          placeholder="Title"
+          value={formData.title}
+          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+        />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (file) {
+              const formData2 = new FormData();
+              formData2.append("image", file);
+              fetch("https://stonebloger-be.onrender.com/upload-image", { method: "POST", body: formData2 })
+                .then((res) => res.json())
+                .then((data) => setFormData((prev) => ({ ...prev, image: data })))
+                .catch((err) => console.error("Upload failed:", err));
             }
-          />
-          <input type="file" accept="image/*" onChange={handleImageChange} />
-          {formData.image && (
-            <img
-              src={formData.image}
-              alt="Preview"
-              style={{ width: 100, height: 100 }}
-            />
-          )}
-          <CKEditor
-            editor={ClassicEditor}
-            data={formData.detail}
-            onChange={(event: any, editor: any) => {
-              const data = editor.getData();
-              setFormData({ ...formData, detail: data });
-            }}
-          />
-          <Button type="primary" onClick={handleSave}>
-            Save
-          </Button>
-        </div>
+          }}
+        />
+        {formData.image && (
+          <img src={formData.image} alt="Preview" style={{ width: 100, height: 100 }} />
+        )}
+        <CKEditor
+          editor={ClassicEditor}
+          data={formData.detail}
+          onChange={(event: any, editor: any) => setFormData({ ...formData, detail: editor.getData() })}
+        />
+        <Button type="primary" onClick={handleSave}>Save</Button>
       </Drawer>
     </Layout>
   );
