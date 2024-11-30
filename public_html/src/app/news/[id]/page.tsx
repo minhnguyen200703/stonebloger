@@ -9,7 +9,7 @@ const page = ({ params }: any) => {
 	useEffect(() => {
 		const handelFetchApi = async () => {
 			try {
-				const response = await fetch(`http://localhost:1968/new/` + params.id);
+				const response = await fetch(`https://stonebloger-be.onrender.com/new/` + params.id);
 				const data = await response.json();
 				setNews(data?.data);
 			} catch (error) {
@@ -53,7 +53,7 @@ const page = ({ params }: any) => {
 		<main className="article-detail pb-5">
 			<section className="relative">
 				<img
-					src={`http://localhost:1968/${news?.image}`}
+					src={`https://stonebloger-be.onrender.com/${news?.image}`}
 					alt="Main News Image"
 					className="w-full h-[700px] object-cover"
 				/>

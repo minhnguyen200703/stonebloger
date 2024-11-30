@@ -50,7 +50,7 @@
 				stt: order,
 				...itc,
 				key: itc._id,
-				image: "http://localhost:1968/" + itc.image,
+				image: "https://stonebloger-be.onrender.com/" + itc.image,
 			};
 		});
 
@@ -81,14 +81,14 @@
 				dataIndex: "image",
 				key: "image",
 				render: (image: any) => {
-					// Loại bỏ "http://localhost:1968/" nếu nó có ở đầu của URL
-					let imageUrl = image.startsWith("http://localhost:1968/")
-						? image.replace("http://localhost:1968/", "")
+					// Loại bỏ "https://stonebloger-be.onrender.com/" nếu nó có ở đầu của URL
+					let imageUrl = image.startsWith("https://stonebloger-be.onrender.com/")
+						? image.replace("https://stonebloger-be.onrender.com/", "")
 						: image;
 
-					// Thêm lại "http://localhost:1968/" nếu imageUrl không có nó
-					if (!imageUrl.startsWith("http://localhost:1968/")) {
-						imageUrl = "http://localhost:1968/" + imageUrl;
+					// Thêm lại "https://stonebloger-be.onrender.com/" nếu imageUrl không có nó
+					if (!imageUrl.startsWith("https://stonebloger-be.onrender.com/")) {
+						imageUrl = "https://stonebloger-be.onrender.com/" + imageUrl;
 					}
 
 					return <img src={imageUrl} className="w-[100px] h-[100px]" />;

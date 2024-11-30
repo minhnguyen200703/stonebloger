@@ -76,12 +76,12 @@ const page = () => {
 		return date.toLocaleDateString("en-US", options).toUpperCase();
 	};
 	const render = (image: any) => {
-		let imageUrl = image.startsWith("http://localhost:1968/")
-			? image.replace("http://localhost:1968/", "")
+		let imageUrl = image.startsWith("https://stonebloger-be.onrender.com/")
+			? image.replace("https://stonebloger-be.onrender.com/", "")
 			: image;
 
-		if (!imageUrl.startsWith("http://localhost:1968/")) {
-			imageUrl = "http://localhost:1968/" + imageUrl;
+		if (!imageUrl.startsWith("https://stonebloger-be.onrender.com/")) {
+			imageUrl = "https://stonebloger-be.onrender.com/" + imageUrl;
 		}
 
 		return imageUrl;
@@ -157,7 +157,7 @@ const page = () => {
 									>
 										<div className="flex justify-center items-center">
 											<img
-												src={`http://localhost:1968/${items?.image}`}
+												src={`https://stonebloger-be.onrender.com/${items?.image}`}
 												alt="News Image 1"
 												className="w-[364px] h-[205px] mb-4 block"
 											/>

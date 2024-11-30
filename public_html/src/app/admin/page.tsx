@@ -38,7 +38,7 @@ const Admin = () => {
   const [news, setNews] = useState([]);
   const handelFetchApi = async () => {
     try {
-      const response = await fetch(`http://localhost:1968/news`);
+      const response = await fetch(`https://stonebloger-be.onrender.com/news`);
       const data = await response.json();
       setNews(data);
       console.log(data);
@@ -92,7 +92,7 @@ const Admin = () => {
 
       try {
         // Gửi file tới server qua API
-        const response = await fetch("http://localhost:1968/upload-image", {
+        const response = await fetch("https://stonebloger-be.onrender.com/upload-image", {
           method: "POST",
           body: formData2,
         });
@@ -117,7 +117,7 @@ const Admin = () => {
     try {
       console.log(formData,'formData')
       if (!checkId) {
-        const response = await fetch(`http://localhost:1968/post-news`, {
+        const response = await fetch(`https://stonebloger-be.onrender.com/post-news`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -132,7 +132,7 @@ const Admin = () => {
         }, 400);
       } else {
         const response = await fetch(
-          `http://localhost:1968/edit-news/${checkId}`,
+          `https://stonebloger-be.onrender.com/edit-news/${checkId}`,
           {
             method: "POST",
             headers: {
@@ -154,7 +154,7 @@ const Admin = () => {
     stt: index + 1,
     key: itc._id,
     title: itc.title,
-    image: "http://localhost:1968/" + itc.image,
+    image: "https://stonebloger-be.onrender.com/" + itc.image,
     createdAt: itc.createdAt,
   }));
 
@@ -174,14 +174,14 @@ const Admin = () => {
       dataIndex: "image",
       key: "image",
       render: (image: any) => {
-        // Loại bỏ "http://localhost:1968/" nếu nó có ở đầu của URL
-        let imageUrl = image.startsWith("http://localhost:1968/")
-          ? image.replace("http://localhost:1968/", "")
+        // Loại bỏ "https://stonebloger-be.onrender.com/" nếu nó có ở đầu của URL
+        let imageUrl = image.startsWith("https://stonebloger-be.onrender.com/")
+          ? image.replace("https://stonebloger-be.onrender.com/", "")
           : image;
       
-        // Thêm lại "http://localhost:1968/" nếu imageUrl không có nó
-        if (!imageUrl.startsWith("http://localhost:1968/")) {
-          imageUrl = "http://localhost:1968/" + imageUrl;
+        // Thêm lại "https://stonebloger-be.onrender.com/" nếu imageUrl không có nó
+        if (!imageUrl.startsWith("https://stonebloger-be.onrender.com/")) {
+          imageUrl = "https://stonebloger-be.onrender.com/" + imageUrl;
         }
       
         return <img src={imageUrl} className="w-[100px] h-[100px]" />;
@@ -216,7 +216,7 @@ const Admin = () => {
                 onClick={async () => {
                   if (window.confirm("bạn có muốn xoá nó ?")) {
                     const res = await fetch(
-                      `http://localhost:1968/new1/` + image.key
+                      `https://stonebloger-be.onrender.com/new1/` + image.key
                     );
                     message.success("Thành công");
                     handelFetchApi();
@@ -271,9 +271,9 @@ const Admin = () => {
             {formData.image && (
               <img
                 src={
-                  formData.image.startsWith("http://localhost:1968/")
+                  formData.image.startsWith("https://stonebloger-be.onrender.com/")
                     ? formData.image
-                    : "http://localhost:1968/" + formData.image
+                    : "https://stonebloger-be.onrender.com/" + formData.image
                 }
                 alt="Preview"
                 className="mt-2 w-48 h-48 object-cover border rounded-md"
@@ -295,7 +295,7 @@ const Admin = () => {
                     formData.append("image", file);
                     try {
                       const response = await fetch(
-                        "http://localhost:1968/upload-image",
+                        "https://stonebloger-be.onrender.com/upload-image",
                         {
                           method: "POST",
                           body: formData,
@@ -304,7 +304,7 @@ const Admin = () => {
                       if (response.ok) {
                         const data = await response.json();
                         return {
-                          default: "http://localhost:1968/" + data, // Trả về URL ảnh
+                          default: "https://stonebloger-be.onrender.com/" + data, // Trả về URL ảnh
                         };
                       } else {
                         throw new Error("Failed to upload image");
