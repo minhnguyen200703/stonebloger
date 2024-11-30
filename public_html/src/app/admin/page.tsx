@@ -195,9 +195,14 @@ const Admin = () => {
           <input type="text" placeholder="Title" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} />
           <input type="file" accept="image/*" onChange={handleImageChange} />
           {formData.image && <img src={formData.image} alt="Preview" style={{ width: 100, height: 100 }} />}
-          <CKEditor editor={ClassicEditor} data={formData.detail} onChange={(event, editor) => {
-            setFormData({ ...formData, detail: editor.getData() });
-          }} />
+          <CKEditor
+            editor={ClassicEditor}
+            data={formData.detail}
+            onChange={(event: any, editor: any) => {
+              const data = editor.getData();
+              setFormData({ ...formData, detail: data });
+            }}
+          />
           <Button type="primary" onClick={handleSave}>Save</Button>
         </div>
       </Drawer>
