@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "4.0.0",
+    "@ant-design/nextjs-registry": "^1.0.2",
     "@ckeditor/ckeditor5-build-classic": "^43.3.1",
     "@ckeditor/ckeditor5-react": "^9.3.1",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",

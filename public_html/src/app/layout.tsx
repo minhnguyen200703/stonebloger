@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 
-import MotionLazy from "@/components/animate/motion-lazy";
-import LenisScroller from "@/components/lenis-scroller";
-
-import "./globals.css";
-import "@/styles/app.css";
-import { LenisProvider, useLenis } from "@/contexts/lenis-provider";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 import LenisWrapper from "@/components/lenis-scroller/lenis-wrapper";
+import "@/styles/app.css";
+import "./globals.css";
 
 export const metadata: Metadata = {
 	title: "Stone Accounting Group",
@@ -48,7 +45,9 @@ export default function RootLayout({
 				/>
 			</head>
 			<body className="bg-white">
-				<LenisWrapper>{children}</LenisWrapper>
+				<AntdRegistry>
+					<LenisWrapper>{children}</LenisWrapper>
+				</AntdRegistry>
 			</body>
 		</html>
 	);

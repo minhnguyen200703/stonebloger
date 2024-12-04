@@ -27,9 +27,7 @@ const NewsForm: React.FC<NewsFormProps> = ({}) => {
 		addNews(body)
 			.then(() => {
 				message.success("Tạo bài viết thành công!");
-				setTimeout(() => {
-					router.push("/admin/news");
-				}, 600);
+				router.push("/admin/news");
 			})
 			.catch((error) => {
 				message.error("Tạo bài viết thất bại!");
