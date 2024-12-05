@@ -1,5 +1,6 @@
 "use client";
 
+import { env } from "@/config/env.configs";
 import { Form, FormInstance } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -17,7 +18,7 @@ const CkEditor: React.FC<CkEditorProps> = ({ form }) => {
 			CKEditor: require("@ckeditor/ckeditor5-react").CKEditor, // v3+
 			ClassicEditor: require("@ckeditor/ckeditor5-build-classic"),
 		};
-		setEditorLoaded(true)
+		setEditorLoaded(true);
 	}, []);
 	function uploadAdapter(loader: any) {
 		return {
@@ -26,14 +27,14 @@ const CkEditor: React.FC<CkEditorProps> = ({ form }) => {
 				const formData = new FormData();
 				formData.append("image", file);
 				try {
-					const response = await fetch("http://localhost:1968/upload-image", {
+					const response = await fetch(`${env.API_URL}/upload-image`, {
 						method: "POST",
 						body: formData,
 					});
 					if (response.ok) {
 						const data = await response.json();
 						return {
-							default: "http://localhost:1968/" + data, // Trả về URL ảnh
+							default: `${env.API_URL}/${data}`,
 						};
 					} else {
 						throw new Error("Failed to upload image");

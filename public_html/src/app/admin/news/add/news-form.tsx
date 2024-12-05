@@ -43,7 +43,7 @@ const NewsForm: React.FC<NewsFormProps> = ({}) => {
 			const formData2 = new FormData();
 			formData2.append("image", file);
 			try {
-				const response = await fetch("http://localhost:1968/upload-image", {
+				const response = await fetch(`${env.API_URL}/upload-image`, {
 					method: "POST",
 					body: formData2,
 				});

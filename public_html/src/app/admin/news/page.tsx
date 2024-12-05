@@ -2,6 +2,7 @@
 import { getNews } from "@/apis/news.api";
 import NewsDeleting from "@/components/admin/news/news-deleting";
 import PageContent from "@/components/admin/page-content";
+import { env } from "@/config/env.configs";
 import {
 	EditOutlined,
 	HomeOutlined,
@@ -50,7 +51,7 @@ const Admin = () => {
 			stt: order,
 			...itc,
 			key: itc._id,
-			image: "http://localhost:1968/" + itc.image,
+			image: itc.image,
 		};
 	});
 
@@ -81,17 +82,7 @@ const Admin = () => {
 			dataIndex: "image",
 			key: "image",
 			render: (image: any) => {
-				// Loại bỏ "http://localhost:1968/" nếu nó có ở đầu của URL
-				let imageUrl = image.startsWith("http://localhost:1968/")
-					? image.replace("http://localhost:1968/", "")
-					: image;
-
-				// Thêm lại "http://localhost:1968/" nếu imageUrl không có nó
-				if (!imageUrl.startsWith("http://localhost:1968/")) {
-					imageUrl = "http://localhost:1968/" + imageUrl;
-				}
-
-				return <img src={imageUrl} className="w-[100px] h-[100px]" />;
+				return <img src={`${env.API_URL}/${image}`} className="w-[100px] h-[100px]" />;
 			},
 		},
 		{

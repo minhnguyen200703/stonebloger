@@ -1,3 +1,4 @@
+import { env } from "@/config/env.configs";
 import type { Metadata } from "next";
 import React from "react";
 
@@ -6,7 +7,7 @@ export async function generateMetadata({
 }: {
 	params: { id: string };
 }): Promise<Metadata> {
-	const response = await fetch(`http://localhost:1968/new/` + params.id);
+	const response = await fetch(`${env.API_URL}/new/` + params.id);
 	const data = await response.json();
 	return {
 		title: data?.data?.title,

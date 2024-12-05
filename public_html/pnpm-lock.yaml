@@ -79,7 +79,7 @@ dependencies:
     version: 3.2.6(react@18.3.1)
   stone-accounting-web:
     specifier: 'file:'
-    version: file:(@babel/core@7.26.0)(ckeditor5@43.3.1)(tailwindcss@3.4.15)(typescript@5.1.6)
+    version: file:(@ant-design/cssinjs@1.22.0)(@babel/core@7.26.0)(ckeditor5@43.3.1)(tailwindcss@3.4.15)(typescript@5.1.6)
   tailwind-merge:
     specifier: ^2.5.2
     version: 2.5.5
@@ -6795,12 +6795,13 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  file:(@babel/core@7.26.0)(ckeditor5@43.3.1)(tailwindcss@3.4.15)(typescript@5.1.6):
+  file:(@ant-design/cssinjs@1.22.0)(@babel/core@7.26.0)(ckeditor5@43.3.1)(tailwindcss@3.4.15)(typescript@5.1.6):
     resolution: {directory: '', type: directory}
     id: 'file:'
     name: stone-accounting-web
     dependencies:
       '@ant-design/icons': 4.0.0(react@18.3.1)
+      '@ant-design/nextjs-registry': 1.0.2(@ant-design/cssinjs@1.22.0)(antd@5.22.2)(next@14.2.18)(react-dom@18.3.1)(react@18.3.1)
       '@ckeditor/ckeditor5-build-classic': 43.3.1
       '@ckeditor/ckeditor5-react': 9.4.0(ckeditor5@43.3.1)(react@18.3.1)
       '@fortawesome/fontawesome-svg-core': 6.7.1
@@ -6825,6 +6826,7 @@ packages:
       simplebar-react: 3.2.6(react@18.3.1)
       tailwind-merge: 2.5.5
     transitivePeerDependencies:
+      - '@ant-design/cssinjs'
       - '@babel/core'
       - '@emotion/is-prop-valid'
       - '@opentelemetry/api'

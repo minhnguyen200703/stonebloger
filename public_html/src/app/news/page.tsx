@@ -4,6 +4,7 @@ import { getCategories } from "@/apis/category.api";
 import { getNews } from "@/apis/news.api";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
+import { env } from "@/config/env.configs";
 import { menuItems } from "@/constant/data/news";
 import { Empty, Pagination, Spin } from "antd";
 import Link from "next/link";
@@ -76,15 +77,8 @@ const page = () => {
 		return date.toLocaleDateString("en-US", options).toUpperCase();
 	};
 	const render = (image: any) => {
-		let imageUrl = image.startsWith("http://localhost:1968/")
-			? image.replace("http://localhost:1968/", "")
-			: image;
-
-		if (!imageUrl.startsWith("http://localhost:1968/")) {
-			imageUrl = "http://localhost:1968/" + imageUrl;
-		}
-
-		return imageUrl;
+		console.log('image: ', image);
+		return `${env.API_URL}/${image}`;
 	};
 
 	return (
@@ -157,7 +151,7 @@ const page = () => {
 									>
 										<div className="flex justify-center items-center">
 											<img
-												src={`http://localhost:1968/${items?.image}`}
+												src={`${env.API_URL}/${items?.image}`}
 												alt="News Image 1"
 												className="w-[364px] h-[205px] mb-4 block"
 											/>
