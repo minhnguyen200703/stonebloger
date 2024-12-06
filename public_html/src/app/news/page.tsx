@@ -105,7 +105,7 @@ const page = () => {
 				<img
 					src={firstNews?.image ? render(firstNews?.image) : "/image.png"}
 					alt="Main News Image"
-					className="w-[1920px] h-[800px]"
+					className="w-[1920px] h-[680px]"
 				/>
 				<div
 					className="absolute inset-0 flex flex-col justify-center text-white p-4"
