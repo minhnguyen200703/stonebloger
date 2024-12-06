@@ -56,11 +56,11 @@ const page = ({ params }: any) => {
 				<img
 					src={`${env.API_URL}/${news?.image}`}
 					alt="Main News Image"
-					className="w-full h-[700px] object-cover"
+					className="w-full h-full object-cover"
 				/>
 			</section>
 			<section className="mx-20 mt-5">
-				<div className="relative">
+				<div className="relative" style={{ marginLeft: "auto", marginRight: "auto", maxWidth: "1200px" }}>
 					<div className="bg-white">
 						<h1 className="font-bold">{news?.title}</h1>
 						<div className="flex items-center text-gray-500 mt-2 mb-[107px]">

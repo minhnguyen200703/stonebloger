@@ -97,7 +97,7 @@ const page = () => {
 					style={{ color: "#0419DC", marginBottom: 0 }}
 					className="text-8xl font-bold text-blue-600"
 				>
-					NEWS
+					News
 				</h1>
 				<p className="text-black font-bold mt-2">{currentDate}</p>
 			</section>
@@ -105,17 +105,17 @@ const page = () => {
 				<img
 					src={firstNews?.image ? render(firstNews?.image) : "/image.png"}
 					alt="Main News Image"
-					className="w-[1920px] h-[680px]"
+					className="w-[1920px] h-full"
 				/>
 				<div
 					className="absolute inset-0 flex flex-col justify-center text-white p-4"
 					style={{ marginRight: "6rem", marginLeft: "6rem" }}
 				>
-					<h2 className="text-4xl font-bold absolute bottom-[160px]">
+					<h2 className="text-4xl font-bold hidden absolute bottom-[160px]">
 						{firstNews?.title}
 					</h2>
 
-					<p className="mt-4 absolute bottom-[100px] pl-3">
+					<p className="mt-4 absolute hidden bottom-[100px] pl-3">
 						{firstNews?.content
 							? `${firstNews.content.split(" ").slice(0, 200).join(" ")}...`
 							: "Content not available."}
