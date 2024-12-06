@@ -138,7 +138,7 @@ const Admin = () => {
 					<Link href="/admin/news">Post</Link>
 				</Breadcrumb.Item>
 			</Breadcrumb>
-			<div style={{ marginLeft: "-100px", paddingLeft: "50px" }}>
+			<div>
 			<PageContent>
 				<Title level={3}>Posts</Title>
 				<div className="flex justify-end mb-3">
