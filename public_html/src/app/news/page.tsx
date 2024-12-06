@@ -136,7 +136,7 @@ const page = () => {
 										setSelectedCatIdx(index);
 									}}
 									className={`${index === 0
-										? "border-l-2 bg-[#6D6E71] border-[#0419DC] text-white cursor-pointer"
+										? "border-l-4 bg-[#6D6E71] border-[#0419DC] text-white cursor-pointer hover:font-bold active:font-bold"
 										: active
 											? "text-black font-bold border-b-2 border-[#0419DC] bg-transparent cursor-pointer"
 											: "text-black font-normal bg-transparent border-b-2 border-transparent cursor-pointer hover:font-bold"
