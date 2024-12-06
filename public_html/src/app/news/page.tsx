@@ -108,7 +108,7 @@ const page = () => {
 			</section>
 			<section className="bg-gray-300 text-left py-4 mt-12">
 				<p className="text-black font-bold text-lg">
-				Club Med's values of kindness, freedom, responsibility, and multiculturalism. You’ll connect with diverse cultures, sharpen your professional skills, and enjoy various benefits like travel, lodging, meals, and leisure activities.
+					Club Med's values of kindness, freedom, responsibility, and multiculturalism. You’ll connect with diverse cultures, sharpen your professional skills, and enjoy various benefits like travel, lodging, meals, and leisure activities.
 				</p>
 			</section>
 			<section className="p-8 mx-24">
@@ -124,9 +124,9 @@ const page = () => {
 										setSelectedCatIdx(index);
 									}}
 									className={`${active
-										? "text-white px-2 bg-slate-700 border-blue-600 cursor-pointer"
-										: "text-gray-700 hover:text-primary cursor-pointer"
-										} ${index === 0 ? "border-l-2 bg-[#6D6E71] text-white" : "border-b-2"} `}
+										? "text-black font-bold border-b-2 border-[#0419DC] bg-transparent px-6 cursor-pointer"
+										: "text-black font-normal bg-transparent border-b-2 border-transparent px-6 cursor-pointer hover:font-bold"
+										} ${index === 0 ? "border-l-2" : ""}`}
 									style={
 										index === 0
 											? { minWidth: "80px", borderColor: "#0419DC" }
@@ -138,6 +138,7 @@ const page = () => {
 							);
 						})}
 				</div>
+
 
 				<div className="min-h-[50vh] flex flex-col">
 					{isLoadingNews && (
