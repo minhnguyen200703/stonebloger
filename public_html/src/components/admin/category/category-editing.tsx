@@ -29,11 +29,11 @@ const CategoryEditing: React.FC<CategoryEditingProps> = ({
 		editCategory(_id, body)
 			.then(() => {
 				onRefetchApi();
-				message.success("Sửa danh mục thành công!");
+				message.success("Category editted!");
 				onToggle();
 			})
 			.catch((error) => {
-				message.error("Sửa danh mục thất bại!");
+				message.error("Category edit fails!");
 			})
 			.finally(() => {
 				setLoadingBtn(false);
@@ -46,14 +46,14 @@ const CategoryEditing: React.FC<CategoryEditingProps> = ({
 	}, [item]);
 	return (
 		<>
-			<Tooltip title="Sửa danh mục">
+			<Tooltip title="Edit category">
 				<Button type="primary" icon={<EditOutlined />} onClick={onToggle} />
 			</Tooltip>
 			<Modal
 				closable={false}
 				open={isVisible}
 				centered
-				title="Sửa danh mục"
+				title="Edit category"
 				footer={
 					<>
 						<Button
@@ -62,9 +62,9 @@ const CategoryEditing: React.FC<CategoryEditingProps> = ({
 							onClick={() => form.submit()}
 							loading={loadingBtn}
 						>
-							Sửa danh mục
+							Edit category
 						</Button>
-						<Button onClick={onToggle}>Huỷ</Button>
+						<Button onClick={onToggle}>Cancel</Button>
 					</>
 				}
 			>
@@ -79,11 +79,11 @@ const CategoryEditing: React.FC<CategoryEditingProps> = ({
 						<Col span={24}>
 							<Form.Item
 								key="name"
-								label="Tên danh mục"
+								label="Category name"
 								name="name"
-								rules={[{ required: true, message: "Bắt buộc" }]}
+								rules={[{ required: true, message: "Required" }]}
 							>
-								<Input className="h-[45px]" placeholder="Tên danh mục" />
+								<Input className="h-[45px]" placeholder="Category name" />
 							</Form.Item>
 						</Col>
 					</Row>

@@ -82,7 +82,9 @@ const Admin = () => {
 			dataIndex: "image",
 			key: "image",
 			render: (image: any) => {
-				return <img src={`${env.API_URL}/${image}`} className="w-[100px] h-[100px]" />;
+				return (
+					<img src={`${env.API_URL}/${image}`} className="w-[100px]" style={{ height: "100px" }} />
+				);
 			},
 		},
 		{
@@ -136,7 +138,7 @@ const Admin = () => {
 					<Link href="/admin/news">Post</Link>
 				</Breadcrumb.Item>
 			</Breadcrumb>
-			<PageContent>
+			<PageContent style={{ marginLeft: "-100px", paddingLeft: "50px" }}>
 				<Title level={3}>Posts</Title>
 				<div className="flex justify-end mb-3">
 					<Button

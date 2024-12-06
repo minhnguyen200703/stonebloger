@@ -18,7 +18,7 @@ const NewsDeleting: React.FC<NewsDeletingProps> = ({ onRefetchApi, newsId }) => 
 		setIsDeleting(true);
 		deleteNews(newsId)
 			.then(() => {
-				message.success("Xoá bài viết thành công!");
+				message.success("Post deleted!");
 				// refetch API
 				onRefetchApi();
 				setIsDeleting(false);
@@ -30,15 +30,15 @@ const NewsDeleting: React.FC<NewsDeletingProps> = ({ onRefetchApi, newsId }) => 
 	};
 	return (
 		<>
-			<Tooltip title="Xoá bài viêt">
+			<Tooltip title="Delete Post">
 				<Button type="default" icon={<DeleteOutlined />} onClick={onToggle} />
 			</Tooltip>
 			<ConfirmModal
 				isVisible={isVisible}
 				onConfirm={onDeleteNews}
 				onToggle={onToggle}
-				target="bài viêt này"
-				action="xoá"
+				target="this post"
+				action="delete"
 				isPending={isDeleting}
 			/>
 		</>

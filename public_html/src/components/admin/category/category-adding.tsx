@@ -21,12 +21,12 @@ const CategoryAdding: React.FC<CategoryAddingProps> = ({ onRefetchApi }) => {
 		addCategory(body)
 			.then(() => {
 				onRefetchApi();
-				message.success("Tạo danh mục thành công!");
+				message.success("Category added!");
 				onToggle();
         form.resetFields();
 			})
 			.catch((error) => {
-				message.error("Tạo danh mục thất bại!");
+				message.error("Category add fails!");
 			})
 			.finally(() => {
 				setLoadingBtn(false);
@@ -35,13 +35,13 @@ const CategoryAdding: React.FC<CategoryAddingProps> = ({ onRefetchApi }) => {
 	return (
 		<>
 			<Button type="primary" icon={<PlusCircleOutlined />} onClick={onToggle}>
-				Thêm danh mục
+				Add category
 			</Button>
 			<Modal
 				closable={false}
 				open={isVisible}
 				centered
-				title="Tạo danh mục"
+				title="Add category"
 				footer={
 					<>
 						<Button
@@ -50,9 +50,9 @@ const CategoryAdding: React.FC<CategoryAddingProps> = ({ onRefetchApi }) => {
 							onClick={() => form.submit()}
 							loading={loadingBtn}
 						>
-							Tạo danh mục
+							Add category
 						</Button>
-						<Button onClick={onToggle}>Huỷ</Button>
+						<Button onClick={onToggle}>Cancel</Button>
 					</>
 				}
 			>
@@ -67,11 +67,11 @@ const CategoryAdding: React.FC<CategoryAddingProps> = ({ onRefetchApi }) => {
 						<Col span={24}>
 							<Form.Item
 								key="name"
-								label="Tên danh mục"
+								label="Category Name"
 								name="name"
-								rules={[{ required: true, message: "Bắt buộc" }]}
+								rules={[{ required: true, message: "Required" }]}
 							>
-								<Input className="h-[45px]" placeholder="Tên danh mục" />
+								<Input className="h-[45px]" placeholder="Category" />
 							</Form.Item>
 						</Col>
 					</Row>

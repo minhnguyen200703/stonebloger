@@ -110,9 +110,9 @@ const Admin = () => {
 					<Link href="/admin/news">Post</Link>
 				</Breadcrumb.Item>
 			</Breadcrumb>
-			<PageContent>
+			<PageContent style={{ marginLeft: "-100px", paddingLeft: "50px" }}>
 				<Title level={3}>Post Lists</Title>
-				<div className="flex justify-end mb-3">
+				<div className="flex justify-end mb-3" style={{ marginBottom: "20px", marginTop: "20px" }}>
 					<CategoryAdding onRefetchApi={handelFetchApi} />
 				</div>
 				<Table
