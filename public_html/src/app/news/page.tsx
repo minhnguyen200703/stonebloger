@@ -116,19 +116,34 @@ const page = () => {
 					</h2>
 
 					<p className="mt-4 absolute bottom-[100px] pl-3">
-						The called object, which has flown Montana to Kansas, an
-						"intelligence <br /> gathering" balloon. Beijing said it was used
-						mainly for weather research and had strayed off course.
+						{firstNews?.content
+							? `${firstNews.content.split(" ").slice(0, 200).join(" ")}...`
+							: "Content not available."}
 					</p>
 				</div>
 			</section>
-			<section className="bg-gray-300 text-left py-4 mt-12">
-				<p className="text-black font-bold text-lg">
-					Club Med's values of kindness, freedom, responsibility, and
-					multiculturalism. You’ll connect with diverse cultures, sharpen your
-					professional skills, and enjoy various benefits like travel, lodging,
-					meals, and leisure activities.
-				</p>
+			<section className="bg-gray-300 text-left py-4 mt-12 overflow-hidden">
+				<div className="relative whitespace-nowrap">
+					<p
+						className="text-black font-bold text-lg inline-block animate-marquee"
+						style={{
+							animation: "marquee 10s linear infinite",
+						}}
+					>
+						{`Club Med's values of kindness, freedom, responsibility, and multiculturalism. You’ll connect with diverse cultures, sharpen your professional skills, and enjoy various benefits like travel, lodging, meals, and leisure activities. `}
+					</p>
+				</div>
+
+				<style jsx>{`
+    @keyframes marquee {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  `}</style>
 			</section>
 			<section className="p-8 mx-24">
 				<div className="flex justify-start space-x-4 mb-4 border-b border-[#222222] w-[570px]">
@@ -143,10 +158,10 @@ const page = () => {
 										setSelectedCatIdx(index);
 									}}
 									className={`${index === 0
-											? "border-l-2 bg-[#6D6E71] text-white cursor-pointer"
-											: active
-												? "text-black font-bold border-b-2 border-[#0419DC] bg-transparent cursor-pointer"
-												: "text-black font-normal bg-transparent border-b-2 border-transparent cursor-pointer hover:font-bold"
+										? "border-l-2 bg-[#6D6E71] text-white cursor-pointer"
+										: active
+											? "text-black font-bold border-b-2 border-[#0419DC] bg-transparent cursor-pointer"
+											: "text-black font-normal bg-transparent border-b-2 border-transparent cursor-pointer hover:font-bold"
 										}`}
 									style={{
 										marginLeft: 0,
