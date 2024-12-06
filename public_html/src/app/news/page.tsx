@@ -105,7 +105,7 @@ const page = () => {
 				<img
 					src={firstNews?.image ? render(firstNews?.image) : "/image.png"}
 					alt="Main News Image"
-					className="w-[1920px] h-[600px]"
+					className="w-[1920px] h-[800px]"
 				/>
 				<div
 					className="absolute inset-0 flex flex-col justify-center text-white p-4"
@@ -122,29 +122,7 @@ const page = () => {
 					</p>
 				</div>
 			</section>
-			<section className="bg-gray-300 text-left py-4 mt-12 overflow-hidden">
-				<div className="relative whitespace-nowrap">
-					<p
-						className="text-black font-bold text-lg inline-block animate-marquee"
-						style={{
-							animation: "marquee 10s linear infinite",
-						}}
-					>
-						{`Club Med's values of kindness, freedom, responsibility, and multiculturalism. You’ll connect with diverse cultures, sharpen your professional skills, and enjoy various benefits like travel, lodging, meals, and leisure activities. `}
-					</p>
-				</div>
 
-				<style jsx>{`
-    @keyframes marquee {
-      0% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
-  `}</style>
-			</section>
 			<section className="p-8 mx-24">
 				<div className="flex justify-start space-x-4 mb-4 border-b border-[#222222] w-[570px]">
 					{categories?.length > 0 &&
