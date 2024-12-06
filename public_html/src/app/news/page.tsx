@@ -19,15 +19,7 @@ const page = () => {
 	const [categories, setCategories] = useState<any>([]);
 	const [selectedCatIdx, setSelectedCatIdx] = useState(0);
 	const router = useRouter();
-	const formatDate = () => {
-		const options = {
-			weekday: "long",
-			year: "numeric",
-			month: "long",
-			day: "numeric",
-		} as any;
-		return new Date().toLocaleDateString("en-US", options).toUpperCase();
-	};
+
 	const [total, setTotal] = useState(0);
 	const [currentPage, setCurrentPage] = useState(1);
 	// API: query news data
