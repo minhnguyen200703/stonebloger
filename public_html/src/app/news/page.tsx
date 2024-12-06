@@ -124,20 +124,22 @@ const page = () => {
 										setSelectedCatIdx(index);
 									}}
 									className={`${active
-										? "text-black font-bold border-b-2 border-[#0419DC] bg-transparent px-6 cursor-pointer"
-										: "text-black font-normal bg-transparent border-b-2 border-transparent px-6 cursor-pointer hover:font-bold"
-										} ${index === 0 ? "border-l-2" : ""}`}
-									style={
-										index === 0
-											? { minWidth: "80px", borderColor: "#0419DC" }
-											: undefined
-									}
+										? "text-black font-bold border-b-2 border-[#0419DC] bg-transparent cursor-pointer"
+										: "text-black font-normal bg-transparent border-b-2 border-transparent cursor-pointer hover:text-gray-700"
+										} ${index === 0 ? "border-l-2 bg-[#6D6E71] text-white" : "border-b-2"}`}
+									style={{
+										marginLeft: 0,
+										marginRight: 0,
+										paddingLeft: index === 0 ? "1rem" : "1.5rem",
+										paddingRight: index === 0 ? "2rem" : "1.5rem",
+									}}
 								>
 									{name}
 								</a>
 							);
 						})}
 				</div>
+
 
 
 				<div className="min-h-[50vh] flex flex-col">
