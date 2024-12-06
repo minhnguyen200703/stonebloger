@@ -12,17 +12,36 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const PAGE_SIZE = 8;
+
+const formatDate = (dateString: string) => {
+	const options: Intl.DateTimeFormatOptions = {
+		weekday: "long",
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+		timeZone: "Australia/Sydney",
+	};
+	return new Intl.DateTimeFormat("en-AU", options).format(new Date(dateString));
+};
+
 const page = () => {
 	const [firstNews, setFirstNew] = useState<any>(null);
 	const [news, setNews] = useState<any>([]);
 	const [isLoadingNews, setIsLoadingNews] = useState(false);
 	const [categories, setCategories] = useState<any>([]);
 	const [selectedCatIdx, setSelectedCatIdx] = useState(0);
+	const [currentDate, setCurrentDate] = useState<string>(""); // Track current date
 	const router = useRouter();
 
 	const [total, setTotal] = useState(0);
 	const [currentPage, setCurrentPage] = useState(1);
-	// API: query news data
+
+	// Fetch current date on component mount
+	useEffect(() => {
+		setCurrentDate(formatDate(new Date().toISOString()));
+	}, []);
+
+	// API: Query news data
 	useEffect(() => {
 		const handelFetchApi = async () => {
 			setIsLoadingNews(true);
@@ -39,7 +58,7 @@ const page = () => {
 						new Date(b.createdDate).getTime() -
 						new Date(a.createdDate).getTime()
 				);
-				// TODO: IF CATEGORY ID HAS VALUE THEN WE DON'T SET STATE
+				// TODO: If CATEGORY ID has value, then we don't set state
 				if (!categoryId) {
 					setFirstNew(dataB?.[0]);
 				}
@@ -53,7 +72,7 @@ const page = () => {
 		handelFetchApi();
 	}, [currentPage, selectedCatIdx, categories]);
 
-	// API: handle query category
+	// API: Query categories
 	useEffect(() => {
 		const PAGE = 1;
 		const handelFetchApi = async () => {
@@ -66,59 +85,49 @@ const page = () => {
 		};
 		handelFetchApi();
 	}, []);
-	const formatDate = (dateString: string) => {
-		const options: Intl.DateTimeFormatOptions = {
-			weekday: "long",
-			year: "numeric",
-			month: "long",
-			day: "numeric",
-			timeZone: "Australia/Sydney", // Set the timezone to Sydney
-		};
-		return new Intl.DateTimeFormat("en-AU", options).format(new Date(dateString));
-	};
-	const Component = () => {
-		const [currentDate, setCurrentDate] = useState<string>("");
 
-		useEffect(() => {
-			setCurrentDate(formatDate(new Date().toISOString()));
-		}, []);
-
-		return (
-			<p className="text-gray-500 mt-2">{currentDate}</p>
-		);
-	};
 	const render = (image: any) => {
-		console.log('image: ', image);
 		return `${env.API_URL}/${image}`;
 	};
-
 
 	return (
 		<main className="mt-[80px]">
 			<section className="text-center py-4">
-				<h1 style={{ color: "#0419DC", marginBottom: 0 }} className="text-8xl font-bold text-blue-600">NEWS</h1>
+				<h1
+					style={{ color: "#0419DC", marginBottom: 0 }}
+					className="text-8xl font-bold text-blue-600"
+				>
+					NEWS
+				</h1>
 				<p className="text-black font-bold mt-2">{currentDate}</p>
 			</section>
 			<section className="relative">
 				<img
 					src={firstNews?.image ? render(firstNews?.image) : "/image.png"}
 					alt="Main News Image"
-					className=" w-[1920px] h-[600px]"
+					className="w-[1920px] h-[600px]"
 				/>
-				<div className="absolute inset-0 flex flex-col justify-center text-white p-4" style={{ marginRight: '6rem', marginLeft: '6rem' }}>
+				<div
+					className="absolute inset-0 flex flex-col justify-center text-white p-4"
+					style={{ marginRight: "6rem", marginLeft: "6rem" }}
+				>
 					<h2 className="text-4xl font-bold absolute bottom-[160px]">
 						{firstNews?.title}
 					</h2>
 
 					<p className="mt-4 absolute bottom-[100px] pl-3">
-						The called object, which has flown Montana to Kansas, an "intelligence <br /> gathering" balloon. Beijing said it was used mainly for weather research and had strayed off course.
+						The called object, which has flown Montana to Kansas, an
+						"intelligence <br /> gathering" balloon. Beijing said it was used
+						mainly for weather research and had strayed off course.
 					</p>
 				</div>
-
 			</section>
 			<section className="bg-gray-300 text-left py-4 mt-12">
 				<p className="text-black font-bold text-lg">
-					Club Med's values of kindness, freedom, responsibility, and multiculturalism. You’ll connect with diverse cultures, sharpen your professional skills, and enjoy various benefits like travel, lodging, meals, and leisure activities.
+					Club Med's values of kindness, freedom, responsibility, and
+					multiculturalism. You’ll connect with diverse cultures, sharpen your
+					professional skills, and enjoy various benefits like travel, lodging,
+					meals, and leisure activities.
 				</p>
 			</section>
 			<section className="p-8 mx-24">
@@ -134,10 +143,10 @@ const page = () => {
 										setSelectedCatIdx(index);
 									}}
 									className={`${index === 0
-										? "border-l-2 bg-[#6D6E71] text-white cursor-pointer"
-										: active
-											? "text-black font-bold border-b-2 border-[#0419DC] bg-transparent cursor-pointer"
-											: "text-black font-normal bg-transparent border-b-2 border-transparent cursor-pointer hover:font-bold"
+											? "border-l-2 bg-[#6D6E71] text-white cursor-pointer"
+											: active
+												? "text-black font-bold border-b-2 border-[#0419DC] bg-transparent cursor-pointer"
+												: "text-black font-normal bg-transparent border-b-2 border-transparent cursor-pointer hover:font-bold"
 										}`}
 									style={{
 										marginLeft: 0,
@@ -151,10 +160,6 @@ const page = () => {
 							);
 						})}
 				</div>
-
-
-
-
 				<div className="min-h-[50vh] flex flex-col">
 					{isLoadingNews && (
 						<div className="flex items-center justify-center flex-1">
