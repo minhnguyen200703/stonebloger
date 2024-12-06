@@ -37,11 +37,11 @@ const NewsForm: React.FC<NewsFormProps> = ({}) => {
 		setLoadingBtn(true);
 		editNews(body, id as string)
 			.then(() => {
-				message.success("Sửa bài viết thành công!");
+				message.success("Edit sucessfully!");
 				router.push("/admin/news");
 			})
 			.catch((error) => {
-				message.success("Tạo bài viết thất bại!");
+				message.success("Create fail!");
 			})
 			.finally(() => {
 				setLoadingBtn(false);
@@ -61,13 +61,13 @@ const NewsForm: React.FC<NewsFormProps> = ({}) => {
 
 				if (response.ok) {
 					const data = await response.json();
-					console.log("Ảnh đã được upload:", data);
+					console.log("Image uploaded:", data);
 					setImage(data);
 				} else {
-					console.error("Lỗi khi upload ảnh:", response.statusText);
+					console.error("Image upload fails:", response.statusText);
 				}
 			} catch (error) {
-				console.error("Lỗi khi upload ảnh:", error);
+				console.error("Image upload fails:", error);
 			}
 		}
 	};
@@ -136,15 +136,15 @@ const NewsForm: React.FC<NewsFormProps> = ({}) => {
 				<Col span={12}>
 					<Form.Item
 						key="title"
-						label="Tiêu đề"
+						label="Title"
 						name="title"
-						rules={[{ required: true, message: "Bắt buộc" }]}
+						rules={[{ required: true, message: "Required" }]}
 					>
-						<Input className="h-[45px]" placeholder="Tiêu đề" />
+						<Input className="h-[45px]" placeholder="Title" />
 					</Form.Item>
 				</Col>
 				<Col span={12}>
-					<Form.Item key="title" label="Hình ảnh">
+					<Form.Item key="title" label="Image">
 						<Input
 							type="file"
 							id="image"
@@ -164,12 +164,12 @@ const NewsForm: React.FC<NewsFormProps> = ({}) => {
 				<Col span={12}>
 					<Form.Item
 						key="categoryId"
-						label="Danh mục bài viết"
+						label="Category"
 						name="categoryId"
-						rules={[{ required: true, message: "Bắt buộc" }]}
+						rules={[{ required: true, message: "Required" }]}
 					>
 						<DebounceSelect
-							placeholder="Danh mục bài viết"
+							placeholder="Category"
 							fetchOptions={fetchCategories}
 						/>
 					</Form.Item>

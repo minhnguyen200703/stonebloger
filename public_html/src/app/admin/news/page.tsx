@@ -62,7 +62,7 @@ const Admin = () => {
 			key: "stt",
 		},
 		{
-			title: "Tiêu đề",
+			title: "Title",
 			dataIndex: "title",
 			key: "title",
 			render: (title: string) => {
@@ -70,7 +70,7 @@ const Admin = () => {
 			},
 		},
 		{
-			title: "Danh mục",
+			title: "Category",
 			dataIndex: "category",
 			key: "category",
 			render: (category: any) => {
@@ -78,7 +78,7 @@ const Admin = () => {
 			},
 		},
 		{
-			title: "Hình ảnh",
+			title: "Image",
 			dataIndex: "image",
 			key: "image",
 			render: (image: any) => {
@@ -86,7 +86,7 @@ const Admin = () => {
 			},
 		},
 		{
-			title: "Ngày tạo",
+			title: "Created At",
 			dataIndex: "createdAt",
 			key: "createdAt",
 			render: (image: any) => {
@@ -94,7 +94,7 @@ const Admin = () => {
 			},
 		},
 		{
-			title: "Cập nhật lúc",
+			title: "Updated At",
 			dataIndex: "updatedAt",
 			key: "updatedAt",
 			render: (updatedAt: any) => {
@@ -102,11 +102,11 @@ const Admin = () => {
 			},
 		},
 		{
-			title: "Thao tác",
+			title: "Actions",
 			render: (row: any) => {
 				return (
 					<Space>
-						<Tooltip title="Sửa bài viêt">
+						<Tooltip title="Edit">
 							<Button
 								type="primary"
 								icon={<EditOutlined />}
@@ -133,18 +133,18 @@ const Admin = () => {
 					</Link>
 				</Breadcrumb.Item>
 				<Breadcrumb.Item>
-					<Link href="/admin/news">Bài viết</Link>
+					<Link href="/admin/news">Post</Link>
 				</Breadcrumb.Item>
 			</Breadcrumb>
 			<PageContent>
-				<Title level={3}>Danh sách bài viết</Title>
+				<Title level={3}>Posts</Title>
 				<div className="flex justify-end mb-3">
 					<Button
 						type="primary"
 						icon={<PlusCircleOutlined />}
 						onClick={() => router.push("/admin/news/add")}
 					>
-						Thêm bài viết
+						Add Post
 					</Button>
 				</div>
 				<Table

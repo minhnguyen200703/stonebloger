@@ -19,6 +19,15 @@ const page = () => {
 	const [categories, setCategories] = useState<any>([]);
 	const [selectedCatIdx, setSelectedCatIdx] = useState(0);
 	const router = useRouter();
+	const formatDate = () => {
+		const options = {
+			weekday: "long",
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+		} as any;
+		return new Date().toLocaleDateString("en-US", options).toUpperCase();
+	};
 	const [total, setTotal] = useState(0);
 	const [currentPage, setCurrentPage] = useState(1);
 	// API: query news data
@@ -58,7 +67,7 @@ const page = () => {
 		const handelFetchApi = async () => {
 			try {
 				const data = await getCategories({ start: PAGE, limit: PAGE_SIZE });
-				setCategories([{ name: "Tất cả", _id: undefined }, ...data?.data]);
+				setCategories([{ name: "All", _id: undefined }, ...data?.data]);
 			} catch (error) {
 				//
 			}
@@ -81,34 +90,33 @@ const page = () => {
 		return `${env.API_URL}/${image}`;
 	};
 
+
 	return (
 		<main className="mt-[80px]">
-			<section className="text-center py-8">
-				<h1 className="text-6xl font-bold text-blue-600">NEWS</h1>
+			<section className="text-center py-4">
+				<h1 style={{ color: "#0419DC", marginBottom: 0 }} className="text-8xl font-bold text-blue-600">NEWS</h1>
 				<p className="text-gray-500 mt-2">MONDAY | DECEMBER 19, 2022</p>
 			</section>
 			<section className="relative">
 				<img
 					src={firstNews?.image ? render(firstNews?.image) : "/image.png"}
 					alt="Main News Image"
-					className=" w-[1920px] h-[492px]"
+					className=" w-[1920px] h-[600px]"
 				/>
-				<div className="absolute  inset-0  flex flex-col justify-center items-center text-white p-4">
+				<div className="absolute inset-0 flex flex-col justify-center text-white p-4" style={{ marginRight: '6rem', marginLeft: '6rem' }}>
 					<h2 className="text-4xl font-bold absolute bottom-[160px]">
 						{firstNews?.title}
 					</h2>
 
-					<p className="mt-4 absolute bottom-[100px] pl-3 ">
-						The called object, which has flown Montana to Kansas, an
-						"intelligence <br /> gathering" balloon. Beijing said it was used
-						mainly for weather research and had strayed off course.
+					<p className="mt-4 absolute bottom-[100px] pl-3">
+						The called object, which has flown Montana to Kansas, an "intelligence <br /> gathering" balloon. Beijing said it was used mainly for weather research and had strayed off course.
 					</p>
 				</div>
+
 			</section>
 			<section className="bg-gray-300 text-left py-4 mt-12">
 				<p className="text-black font-bold text-lg">
-					Red's values of kindness, freedom, responsibility, and
-					multiculturalism. You'll connect with diverse cultures
+				Club Med's values of kindness, freedom, responsibility, and multiculturalism. You’ll connect with diverse cultures, sharpen your professional skills, and enjoy various benefits like travel, lodging, meals, and leisure activities.
 				</p>
 			</section>
 			<section className="p-8 mx-24">
@@ -123,17 +131,22 @@ const page = () => {
 										e.preventDefault();
 										setSelectedCatIdx(index);
 									}}
-									className={`${
-										active
-											? "text-white px-2 border-b-2 bg-slate-700 border-blue-600 cursor-pointer"
-											: "text-gray-700 hover:text-primary cursor-pointer"
-									}`}
+									className={`${active
+										? "text-white px-2 bg-slate-700 border-blue-600 cursor-pointer"
+										: "text-gray-700 hover:text-primary cursor-pointer"
+										} ${index === 0 ? "border-l-2 bg-[#6D6E71] text-white" : "border-b-2"} `}
+									style={
+										index === 0
+											? { minWidth: "80px", borderColor: "#0419DC" }
+											: undefined
+									}
 								>
 									{name}
 								</a>
 							);
 						})}
 				</div>
+
 				<div className="min-h-[50vh] flex flex-col">
 					{isLoadingNews && (
 						<div className="flex items-center justify-center flex-1">
@@ -156,7 +169,7 @@ const page = () => {
 												className="w-[364px] h-[205px] mb-4 block"
 											/>
 										</div>
-										<h3 className="text-xl font-bold text-clamp">
+										<h3 className="text-xl font-bold text-clamp mb-5">
 											{items?.title}
 										</h3>
 										<p className="text-gray-500 mt-2">

@@ -20,14 +20,14 @@ const NewsAddingRoute: React.FC<NewsAddingRouteProps> = ({}) => {
 					</Link>
 				</Breadcrumb.Item>
 				<Breadcrumb.Item>
-					<Link href="/admin/news">Bài viết</Link>
+					<Link href="/admin/news">Post</Link>
 				</Breadcrumb.Item>
 				<Breadcrumb.Item>
-					<span>Sửa bài viết</span>
+					<span>Edit Post</span>
 				</Breadcrumb.Item>
 			</Breadcrumb>
 			<PageContent>
-				<Title level={3}>Sửa bài viết</Title>
+				<Title level={3}>Edit Post</Title>
 				<NewsForm />
 			</PageContent>
 		</>

@@ -63,7 +63,7 @@ const Admin = () => {
 			key: "stt",
 		},
 		{
-			title: "Tên",
+			title: "Name",
 			dataIndex: "name",
 			key: "name",
 			render: (name: string) => {
@@ -71,7 +71,7 @@ const Admin = () => {
 			},
 		},
 		{
-			title: "Tạo lúc",
+			title: "Created At",
 			dataIndex: "createdAt",
 			key: "createdAt",
 			render: (createdAt: any) => {
@@ -79,7 +79,7 @@ const Admin = () => {
 			},
 		},
 		{
-			title: "Cập nhật lúc",
+			title: "Update At",
 			dataIndex: "updatedAt",
 			key: "updatedAt",
 			render: (updatedAt: any) => {
@@ -87,7 +87,7 @@ const Admin = () => {
 			},
 		},
 		{
-			title: "Thao tác",
+			title: "Actions",
 			render: (row: any) => {
 				console.log('row: ', row);
 				return (
@@ -107,11 +107,11 @@ const Admin = () => {
 					</Link>
 				</Breadcrumb.Item>
 				<Breadcrumb.Item>
-					<Link href="/admin/news">Bài viết</Link>
+					<Link href="/admin/news">Post</Link>
 				</Breadcrumb.Item>
 			</Breadcrumb>
 			<PageContent>
-				<Title level={3}>Danh sách bài viết</Title>
+				<Title level={3}>Post Lists</Title>
 				<div className="flex justify-end mb-3">
 					<CategoryAdding onRefetchApi={handelFetchApi} />
 				</div>
