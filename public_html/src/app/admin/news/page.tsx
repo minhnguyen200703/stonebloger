@@ -138,7 +138,8 @@ const Admin = () => {
 					<Link href="/admin/news">Post</Link>
 				</Breadcrumb.Item>
 			</Breadcrumb>
-			<PageContent className="ml-[-100px] pl-[50px]">
+			<div style={{ marginLeft: "-100px", paddingLeft: "50px" }}>
+			<PageContent>
 				<Title level={3}>Posts</Title>
 				<div className="flex justify-end mb-3">
 					<Button
@@ -168,6 +169,7 @@ const Admin = () => {
 					/>
 				</div>
 			</PageContent>
+			</div>
 		</>
 	);
 };
