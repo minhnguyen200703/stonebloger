@@ -78,6 +78,7 @@ export interface ProfileData {
   operatingHours?: string;
   linkedInUrl: string;
   imageUrl: string;
+  location?: string;
 }
 
 export const profileDatas: ProfileData[] = [
@@ -106,6 +107,8 @@ export const profileDatas: ProfileData[] = [
     operatingHours: "9 AM - 5 PM, Monday to Friday",
     linkedInUrl: "https://linkedin.com/in/rodney-stone", // Replace with actual LinkedIn URL
     imageUrl: "/images/members/member1.png", // Replace with actual image URL
+    location:
+      "https://www.google.com/maps/d/u/0/embed?mid=1uf7LJKbCDQ9MB5gz80mKeOUr_6Qs3pk&ehbc=2E312F",
   },
   {
     id: "2",
@@ -125,6 +128,8 @@ export const profileDatas: ProfileData[] = [
     operatingHours: "9 AM - 5 PM, Monday to Friday",
     linkedInUrl: "https://linkedin.com/in/lydia-atwell", // Replace with actual LinkedIn URL
     imageUrl: "/images/members/member1.png", // Replace with actual image URL
+    location:
+      "https://www.google.com/maps/d/u/0/embed?mid=1uf7LJKbCDQ9MB5gz80mKeOUr_6Qs3pk&ehbc=2E312F",
   },
   {
     id: "3",
@@ -144,5 +149,7 @@ export const profileDatas: ProfileData[] = [
     operatingHours: "9 AM - 5 PM, Monday to Friday",
     linkedInUrl: "https://linkedin.com/in/paul-wright", // Replace with actual LinkedIn URL
     imageUrl: "/images/members/member1.png", // Replace with actual image URL
+    location:
+      "https://www.google.com/maps/d/u/0/embed?mid=1uf7LJKbCDQ9MB5gz80mKeOUr_6Qs3pk&ehbc=2E312F",
   },
 ];

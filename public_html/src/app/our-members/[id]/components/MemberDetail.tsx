@@ -1,7 +1,6 @@
 import { ProfileData } from "@/constant/data/members";
 import { Flex, Image, Popover } from "antd";
 import Link from "next/link";
-import { useState } from "react";
 import MapPopover from "./MapPopover";
 
 type MemberDetailProps = {
@@ -9,8 +8,6 @@ type MemberDetailProps = {
 };
 
 const MemberDetail = ({ member }: MemberDetailProps) => {
-  const [showMap, setShowMap] = useState(false);
-
   return (
     <div className="grid w-full members-detail pt-8">
       <div className="sumary-info text-left">
@@ -59,7 +56,7 @@ const MemberDetail = ({ member }: MemberDetailProps) => {
           <div className="office">
             <h2 className="font-bold">Office</h2>
             <Popover
-              content={<MapPopover />}
+              content={<MapPopover src={member.location} />}
               placement="rightBottom"
               trigger="click"
             >
