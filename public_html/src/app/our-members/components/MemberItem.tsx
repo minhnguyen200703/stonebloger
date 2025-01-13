@@ -23,7 +23,7 @@ const MemberItem = ({ member }: MemberItemProps) => {
           </h3>
           <div className="member-services">
             {member.services.map((m, i) => (
-              <div className="text-xs" key={i}>
+              <div className="text-xm" key={i}>
                 {m}
               </div>
             ))}
@@ -31,7 +31,7 @@ const MemberItem = ({ member }: MemberItemProps) => {
           <Flex
             justify="space-between"
             align="center"
-            className="member-name text-base !mt-auto !pr-2"
+            className="member-name text-lg !mt-auto !pr-2"
           >
             {member.name}
             <Link href={`/our-members/${member.id}`} className="member-link">

@@ -15,7 +15,7 @@ const MemberDetail = ({ member }: MemberDetailProps) => {
     >
       <div className="sumary-info text-left">
         <Image className="rounded-3xl" src={member.imageUrl}  preview={false} />
-        <div className="member-name text-[34px] mt-4 text-[#01019b]">
+        <div className="member-name text-[34px] mt-4 text-[#01019b] font-semibold">
           {member.name}
         </div>
         <div className="position text-lg mt-1 text-[#01019b]">
