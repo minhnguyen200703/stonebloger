@@ -49,6 +49,10 @@ const navigationData = {
       href: "/services",
     },
     {
+      name: "Our Offices",
+      href: "/our-members"
+    },
+    {
       name: "Franchise Program",
       items: [
         {

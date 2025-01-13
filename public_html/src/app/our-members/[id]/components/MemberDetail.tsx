@@ -9,9 +9,12 @@ type MemberDetailProps = {
 
 const MemberDetail = ({ member }: MemberDetailProps) => {
   return (
-    <div className="grid w-full members-detail pt-8">
+    <div
+      className="grid w-full members-detail pt-8"
+      style={{ gap: '25px' }}
+    >
       <div className="sumary-info text-left">
-        <Image className="rounded-3xl" src={member.imageUrl} />
+        <Image className="rounded-3xl" src={member.imageUrl}  preview={false} />
         <div className="member-name text-[34px] mt-4 text-[#01019b]">
           {member.name}
         </div>
@@ -27,16 +30,17 @@ const MemberDetail = ({ member }: MemberDetailProps) => {
         </Link>
       </div>
       <div className="detail-info pt-8">
-        <div className="detail-info__desc text-left pl-8 pr-7 text-lg pb-4">
+        <div
+          className="detail-info__desc text-left pl-8 pr-7 text-lg pb-4"
+          style={{ paddingBottom: '20px' }}>
           {member.description}
         </div>
-        <div className="text-white text-left p-10 pb-2 detail-info__other bg-primary w-full grid rounded-3xl gap-4 gap-x-20">
-          <div className="contact-detail">
-            <h2 className="font-bold">Contact Details</h2>
-            <div className="text-base">P. {member.contactDetails.phone}</div>
-            <div className="text-base">E. {member.contactDetails.email}</div>
-            <div className="text-base">A. {member.contactDetails.address}</div>
-          </div>
+        <div className="text-white text-left p-10 pb-2 detail-info__other bg-primary w-full grid rounded-3xl gap-4 gap-x-20" style={{ padding: '2rem' }}>          <div className="contact-detail">
+          <h2 className="font-bold">Contact Details</h2>
+          <div className="text-base">P. {member.contactDetails.phone}</div>
+          <div className="text-base">E. {member.contactDetails.email}</div>
+          <div className="text-base">A. {member.contactDetails.address}</div>
+        </div>
           <div className="service-options">
             <h2 className="font-bold">Service Options</h2>
             {member.services.map((s) => (

@@ -16,7 +16,7 @@ const page = () => {
   profileDatas;
   return (
     <main className="mt-[80px] member-detail-page">
-      <section className="text-center py-[40px] px-[40px] lg:px-[135px] w-full">
+      <section className="text-center py-[40px] px-[40px] lg:px-[150px] w-full">
         <div className="pt-12 pb-20">
           {member ? (
             <>

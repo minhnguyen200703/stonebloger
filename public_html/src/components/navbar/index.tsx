@@ -104,17 +104,11 @@ export const Logo: React.FC<LogoProps> = ({
 const Links = () => {
   const menus = navigationData.menu;
 
-  const ourMenberNav = {
-    name: "Our Members",
-    href: "/our-members",
-  };
-
   return (
     <div className="flex items-center gap-6">
       {menus.map((menu) => (
         <NavLink key={menu.name} menu={menu} />
       ))}
-      <NavLink key={ourMenberNav.name} menu={ourMenberNav} />
     </div>
   );
 };

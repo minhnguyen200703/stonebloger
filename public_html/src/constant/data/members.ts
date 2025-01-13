@@ -8,7 +8,7 @@ export interface Personal {
 
 export const members: Personal[] = [
   {
-    id: "1",
+    id: "rodneystone",
     region: "South East Asia",
     services: [
       "Business Advisory",
@@ -20,21 +20,21 @@ export const members: Personal[] = [
     imageUrl: "/images/members/RodneyStone.png",
   },
   {
-    id: "2",
+    id: "lydiaatwell",
     region: "Australia",
     services: ["Business Advisory", "Accounting", "Taxation"],
     name: "Lydia Atwell",
     imageUrl: "/images/members/LydiaAtwell.png",
   },
   {
-    id: "3",
+    id: "paulwright",
     region: "Portland, Victoria",
     services: ["Business Advisory", "Accounting", "Taxation"],
     name: "Paul Wright",
     imageUrl: "/images/members/PaulWright.png",
   },
   {
-    id: "4",
+    id: "darencardow",
     region: "Sunshine Coast, Queensland",
     services: [
       "Business Advisory",
@@ -68,7 +68,7 @@ export interface ProfileData {
 
 export const profileDatas: ProfileData[] = [
   {
-    id: "1",
+    id: "rodneystone",
     name: "Rodney Stone",
     title: "Executive Director",
     region: "South East Asia",
@@ -78,7 +78,7 @@ export const profileDatas: ProfileData[] = [
       phone: "+84 938 370 432",
       email: "rodney@stoneaccounting.com.au",
       address:
-        "A. 64/12 Street 34, An Khanh Ward, Thu Duc City, Ho Chi Minh City, Vietnam",
+        "64/12 Street 34, An Khanh Ward, Thu Duc City, Ho Chi Minh City, Vietnam",
     },
     services: [
       "Business Advisory",
@@ -96,7 +96,7 @@ export const profileDatas: ProfileData[] = [
       "https://www.google.com/maps/d/embed?mid=1J5EaBau34rboyRDas__GfD76-3fedp4&ehbc=2E312F",
   },
   {
-    id: "2",
+    id: "lydiaatwell",
     name: "Lydia Atwell",
     title: "Executive Director",
     region: "Portland, Victoria (Head Office)",
@@ -105,7 +105,7 @@ export const profileDatas: ProfileData[] = [
     contactDetails: {
       phone: "+61 411 427 713",
       email: "lydia@stoneaccounting.com.au",
-      address: "A. 125b Percy Street, Portland, Victoria",
+      address: "125b Percy Street, Portland, Victoria",
     },
     services: ["Business Advisory", "Accounting", "Taxation"],
     certificates: ["CA", "B. Com"],
@@ -117,7 +117,7 @@ export const profileDatas: ProfileData[] = [
       "https://www.google.com/maps/d/embed?mid=1U9bkfF-f2v2J_5rGSkP8F4eeBfRqxjc&ehbc=2E312F",
   },
   {
-    id: "3",
+    id: "paulwright",
     name: "Paul Wright",
     title: "Senior Accountant",
     region: "Portland, Victoria",
@@ -126,7 +126,7 @@ export const profileDatas: ProfileData[] = [
     contactDetails: {
       phone: "+61 3 5523 1234",
       email: "paul@stoneaccounting.com.au",
-      address: "A. 1b 111 Bentinck Street, Portland, Victoria ",
+      address: "1b 111 Bentinck Street, Portland, Victoria ",
     },
     services: ["Business Advisory", "Accounting", "Taxation"],
     certificates: ["B. Com"],
@@ -138,7 +138,7 @@ export const profileDatas: ProfileData[] = [
       "https://www.google.com/maps/d/embed?mid=1b_ZXGTM-eNegYe4wjX5WOcwwnHjOlY8&ehbc=2E312F",
   },
   {
-    id: "4",
+    id: "darencardow",
     name: "Daren Cardow",
     title: "Senior Accountant",
     region: "Sunshine Coast, Queensland",
@@ -147,7 +147,7 @@ export const profileDatas: ProfileData[] = [
     contactDetails: {
       phone: "+61 414 359 783",
       email: "daren@stoneaccounting.com.au",
-      address: "A. Sunshine Coast, Queensland",
+      address: "Sunshine Coast, Queensland",
     },
     services: ["Business Advisory", "Accounting", "Taxation"],
     certificates: ["CPA", "GAIDC", "Registered Tax Agent", "B. Bus"],

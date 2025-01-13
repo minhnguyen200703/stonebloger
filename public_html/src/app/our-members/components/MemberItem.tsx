@@ -14,7 +14,7 @@ const MemberItem = ({ member }: MemberItemProps) => {
       className="member-item rounded-2xl overflow-hidden"
     >
       <div className="flex h-fit max-w-[50%]">
-        <Image src={member.imageUrl} className="rounded-2xl" />
+        <Image src={member.imageUrl} className="rounded-2xl"  preview={false} />
       </div>
       <div className="member-info text-white w-full text-left">
         <div className="member-info-inner flex flex-col gap-2 h-full pt-6 pb-4">
