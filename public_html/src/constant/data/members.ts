@@ -28,12 +28,12 @@ export const members: Personal[] = [
   },
   {
     id: "paulwright",
-    region: "Portland, Victoria",
+    region: "Portland, \nVictoria",
     services: ["Business Advisory", "Accounting", "Taxation"],
     name: "Paul Wright",
     imageUrl: "/images/members/PaulWright.png",
   },
-  {
+  { 
     id: "darencardow",
     region: "Sunshine Coast, Queensland",
     services: [

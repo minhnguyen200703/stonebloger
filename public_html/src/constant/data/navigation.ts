@@ -50,6 +50,16 @@ const navigationData = {
     },
     {
       name: "Our Offices",
+      items: [
+        {
+          name: "Our Members",
+          href: "/our-members#our-members",
+        },
+        {
+          name: "Associate Offices",
+          href: "/our-members#associate-offices",
+        }
+      ],
       href: "/our-members"
     },
     {
