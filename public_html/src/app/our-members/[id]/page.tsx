@@ -21,7 +21,7 @@ const page = () => {
           {member ? (
             <>
               <h1 style={{ fontSize: "2.5rem" }}>
-                {`${last(member.name.split(" "))?.toUpperCase()} in ${
+                {`STONE in ${
                   member.region
                 }`}
               </h1>

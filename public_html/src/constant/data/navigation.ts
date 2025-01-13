@@ -63,24 +63,6 @@ const navigationData = {
       href: "/our-members"
     },
     {
-      name: "Franchise Program",
-      items: [
-        {
-          name: "Program Overview",
-          href: "/franchise#overview",
-        },
-        {
-          name: "Franchise Benefits",
-          href: "/franchise#benefit",
-        },
-        {
-          name: "Application Process",
-          href: "/franchise#application",
-        },
-      ],
-      href: "/franchise",
-    },
-    {
       name: "Contact",
       href: "/contact",
       items: [

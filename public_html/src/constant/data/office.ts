@@ -12,14 +12,14 @@ export interface Office {
       region: "Adelaide, South Australia",
       name: "Regional Office",
       email: "hello@stoneaccounting.com.au",
-      address: "",
+      address: "Comming soon...",
     },
     {
       id: "lydiaatwell",
       region: "Brisbane, Queensland",
       name: "Regional Office",
       email: "hello@stoneaccounting.com.au",
-      address: "",
+      address: "Comming soon...",
     },
     {
       id: "paulwright",
@@ -33,7 +33,7 @@ export interface Office {
       region: "Melbourne, Victoria",
       name: "Regional Office",
       email: "hello@stoneaccounting.com.au",
-      address: "",
+      address: "Comming soon...",
     }
   ];
   

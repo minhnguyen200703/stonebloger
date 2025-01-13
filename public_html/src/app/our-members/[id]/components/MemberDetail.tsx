@@ -14,7 +14,7 @@ const MemberDetail = ({ member }: MemberDetailProps) => {
       style={{ gap: '25px' }}
     >
       <div className="sumary-info text-left">
-        <Image className="rounded-3xl" src={member.imageUrl}  preview={false} />
+        <Image className="rounded-3xl" src={member.imageUrl} preview={false} />
         <div className="member-name text-[34px] mt-4 text-[#01019b] font-semibold">
           {member.name}
         </div>
@@ -35,12 +35,13 @@ const MemberDetail = ({ member }: MemberDetailProps) => {
           style={{ paddingBottom: '20px' }}>
           {member.description}
         </div>
-        <div className="text-white text-left p-10 pb-2 detail-info__other bg-primary w-full grid rounded-3xl gap-4 gap-x-20" style={{ padding: '2rem' }}>          <div className="contact-detail">
-          <h2 className="font-bold">Contact Details</h2>
-          <div className="text-base">P. {member.contactDetails.phone}</div>
-          <div className="text-base">E. {member.contactDetails.email}</div>
-          <div className="text-base">A. {member.contactDetails.address}</div>
-        </div>
+        <div className="text-white text-left p-10 pb-2 detail-info__other bg-primary w-full grid rounded-3xl gap-4 gap-x-20" style={{ padding: '2rem' }}>
+          <div className="contact-detail mb-4 ">
+            <h2 className="font-bold">Contact Details</h2>
+            <div className="text-base"><strong>P.</strong> {member.contactDetails.phone}</div>
+            <div className="text-base"><strong>E.</strong> {member.contactDetails.email}</div>
+            <div className="text-base"><strong>A.</strong> {member.contactDetails.address}</div>
+          </div>
           <div className="service-options">
             <h2 className="font-bold">Service Options</h2>
             {member.services.map((s) => (
@@ -58,7 +59,7 @@ const MemberDetail = ({ member }: MemberDetailProps) => {
             ))}
           </div>
           <div className="office">
-            <h2 className="font-bold">Office</h2>
+            <h2 className="font-bold mb-2">Office</h2>
             <Popover
               content={<MapPopover src={member.location} />}
               placement="rightBottom"
@@ -73,8 +74,8 @@ const MemberDetail = ({ member }: MemberDetailProps) => {
               </Flex>
             </Popover>
             {member.operatingHours && (
-              <div className="open-hour">
-                <div className="font-bold text-lg mb-2">Operating Hours:</div>
+              <div className="open-hour mt-8">
+                <h2 className="font-bold">Operating Hours:</h2>
                 {member.operatingHours.split(",").map((t) => (
                   <div key={t} className="text-lg">
                     {t}
