@@ -140,7 +140,7 @@ export const profileDatas: ProfileData[] = [
   {
     id: "darencardow",
     name: "Daren Cardow",
-    title: "Senior Accountant",
+    title: "Executive Director",
     region: "Sunshine Coast, Queensland",
     description:
       "With his reknowned expertise, a stellar local reputation, and unparalleled knowledge of the Sunshine Coast’s unique business environment, Daren is a natural fit for the STONE network. Backed by our innovative and extensive resources and commitment to exceptional service, Daren is set to elevate the client experience for businesses and individuals across the region.",
