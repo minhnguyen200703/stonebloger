@@ -1,10 +1,20 @@
+export enum Location {
+  AU = 1,
+  AS,
+}
 export interface Personal {
   id: string;
   region: string;
   services: string[];
   name: string;
   imageUrl: string;
+  location: Location;
 }
+
+export const locationMapping: Record<number, string> = {
+  [Location.AU]: "Australia",
+  [Location.AS]: "Asia",
+};
 
 export const members: Personal[] = [
   {
@@ -18,6 +28,7 @@ export const members: Personal[] = [
     ],
     name: "Rodney Stone",
     imageUrl: "/images/members/RodneyStone.png",
+    location: Location.AU,
   },
   {
     id: "lydiaatwell",
@@ -25,6 +36,7 @@ export const members: Personal[] = [
     services: ["Business Advisory", "Accounting", "Taxation"],
     name: "Lydia Atwell",
     imageUrl: "/images/members/LydiaAtwell.png",
+    location: Location.AS,
   },
   {
     id: "paulwright",
@@ -32,18 +44,16 @@ export const members: Personal[] = [
     services: ["Business Advisory", "Accounting", "Taxation"],
     name: "Paul Wright",
     imageUrl: "/images/members/PaulWright.png",
+    location: Location.AU,
   },
   { 
     id: "darencardow",
     region: "Sunshine Coast, Queensland",
-    services: [
-      "Business Advisory",
-      "Accounting",
-      "Taxation"
-    ],
+    services: ["Business Advisory", "Accounting", "Taxation"],
     name: "Daren Cardow",
     imageUrl: "/images/members/DarenCardow.png",
-  }
+    location: Location.AS,
+  },
 ];
 
 export interface ProfileData {
