@@ -6,6 +6,7 @@ import "@/styles/app.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
+	metadataBase: new URL('https://stoneaccounting.com.au'), // Set your primary domain
 	title: "Stone Accounting Group",
 	description:
 		"At Stone Accounting Group, our franchisees offer a comprehensive range of Accounting, Taxation, and Business Advisory services.",
