@@ -2,10 +2,19 @@
 import { Location, locationMapping } from "@/constant/data/members";
 import { cn } from "@/lib/utils";
 import { Button, Flex, FlexProps } from "antd";
-import React, { useState } from "react";
+import React, { SetStateAction } from "react";
 
-const LocationSwitch = (props: Partial<FlexProps>) => {
-  const [isActive, setIsActive] = useState<Location>(Location.AU);
+type LocationSwitchProps = Partial<FlexProps> & {
+  prefix: string;
+  isActive: Location;
+  setIsActive: React.Dispatch<SetStateAction<Location>>;
+};
+const LocationSwitch = ({
+  isActive,
+  prefix,
+  setIsActive,
+  ...props
+}: LocationSwitchProps) => {
   return (
     <Flex {...props}>
       <Flex
@@ -21,7 +30,7 @@ const LocationSwitch = (props: Partial<FlexProps>) => {
               "min-w-[86px] !font-semibold",
               isActive !== parseInt(l) ? "!text-white" : ""
             )}
-            key={l}
+            key={prefix + l}
           >
             {locationMapping[parseInt(l)]}
           </Button>

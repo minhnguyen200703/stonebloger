@@ -46,13 +46,13 @@ export const members: Personal[] = [
     imageUrl: "/images/members/PaulWright.png",
     location: Location.AU,
   },
-  { 
+  {
     id: "darencardow",
     region: "Sunshine Coast, Queensland",
     services: ["Business Advisory", "Accounting", "Taxation"],
     name: "Daren Cardow",
     imageUrl: "/images/members/DarenCardow.png",
-    location: Location.AS,
+    location: Location.AU,
   },
 ];
 

@@ -1,24 +1,24 @@
 "use client";
-import { Location, members } from "@/constant/data/members";
+import { offices } from "@/constant/data/office";
+import OfficeItem from "./OfficeItem";
+import { Location } from "@/constant/data/members";
+import { useState, useMemo } from "react";
 import LocationSwitch from "./LocationSwitch";
-import MemberItem from "./MemberItem";
-import { useMemo, useState } from "react";
 
-const OurMemberSection = () => {
+const OfficesSection = () => {
   const [isActive, setIsActive] = useState<Location>(Location.AU);
-  const filteredMember = useMemo(() => {
-    return members.filter((m) => m.location === isActive);
+  const filteredOffice = useMemo(() => {
+    return offices.filter((m) => m.location === isActive);
   }, [isActive]);
-
   return (
     <section
-      id="our-members"
+      id="associate-offices"
       className="text-center py-[40px] px-[40px] lg:px-[135px] w-full"
     >
-      <h1 style={{ fontSize: "2.5rem" }}>Our Members</h1>
+      <h1 style={{ fontSize: "2.5rem" }}>Associate Offices</h1>
       <div className="flex">
         <LocationSwitch
-          prefix="member"
+          prefix="office"
           isActive={isActive}
           setIsActive={setIsActive}
           className="!ml-auto"
@@ -26,8 +26,8 @@ const OurMemberSection = () => {
       </div>
       <div className="pt-12">
         <div className="w-full members-grid grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
-          {filteredMember.map((m) => (
-            <MemberItem member={m} key={"member-" + m.id} />
+          {filteredOffice.map((m) => (
+            <OfficeItem office={m} key={"office-" + m.id} />
           ))}
         </div>
       </div>
@@ -35,4 +35,4 @@ const OurMemberSection = () => {
   );
 };
 
-export default OurMemberSection;
+export default OfficesSection;
