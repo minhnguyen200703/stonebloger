@@ -36,7 +36,7 @@ const MemberItem = ({ member }: MemberItemProps) => {
             </h4>
             <div className="member-services">
               {member.services.map((m, i) => (
-                <div className="text-xm" key={i}>
+                <div className="text-xm" style={{ fontSize: "14px"}} key={i}>
                   {m}
                 </div>
               ))}

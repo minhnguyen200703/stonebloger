@@ -10,7 +10,7 @@ import landingData from '@/constant/data/landing';
 import { SectionDescription } from './section';
 
 type Props = {
-  scrollYProgress: MotionValue<number>;
+	scrollYProgress: MotionValue<number>;
 };
 
 const HeroPrimary: React.FC<Props> = ({ scrollYProgress }) => {
@@ -27,30 +27,38 @@ const HeroPrimary: React.FC<Props> = ({ scrollYProgress }) => {
 
 	return (
 		<m.div
-			style={ {
+			id={landingData.hero_1.id}
+			style={{
 				opacity,
 				translateY,
 				translateX,
 				scale,
 				zIndex,
-			} }
+			}}
 			className='absolute inset-0 flex h-full flex-col items-end justify-center overflow-hidden p-4 pt-[calc(80px_+_16px)] text-black'
 		>
 			<div className='flex flex-col text-left'>
 				<h1 className='font-bold text-2xl 2xl:text-5xl text-white lg:text-gray-primary'>
-					{ landingData.hero_1.title }
+					{landingData.hero_1.title}
 				</h1>
 				<div className='mt-[22px] lg:max-w-[35.102vw]'>
 					<SectionDescription>
 						<span className='max-lg:text-white'>
-							{ landingData.hero_1.description }
+							{landingData.hero_1.description}
 						</span>
 					</SectionDescription>
 				</div>
-				<div className='flex mt-[27px]'>
-					<Link href={landingData.hero_1.cta.href} passHref>
+				<div className="flex mt-[27px]">
+					<div // Use div instead of button to avoid nesting issues
+						onClick={() => {
+							window.scrollBy({
+								top: window.innerHeight * 2, // Scroll down 2 screen heights
+								behavior: "smooth",
+							});
+						}}
+					>
 						<ShinyButton>{landingData.hero_1.cta.text}</ShinyButton>
-					</Link>
+					</div>
 				</div>
 			</div>
 		</m.div>

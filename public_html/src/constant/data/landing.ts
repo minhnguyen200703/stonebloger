@@ -1,5 +1,6 @@
 const landingData = {
 	hero_1: {
+		id:'home_started',
 		title: 'At STONE Accounting Group,',
 		description:
       'Our vision is to redefine the accounting experience, making excellence not just a standard but a catalyst for success in a dynamic and interconnected world.',
@@ -9,6 +10,7 @@ const landingData = {
 		},
 	},
 	hero_2: {
+		id:'home_info',
 		title: 'At STONE Accounting Group,',
 		description:
       'The story is not just about numbers; it\'s about building lasting relationships, fostering trust, and empowering clients to thrive in an ever-changing world. Guided by Rodney and Lydia\'s leadership, the firm continues to write its story of success, one client at a time.',
@@ -20,6 +22,7 @@ const landingData = {
 		],
 	},
 	ourService: {
+		id:'home_services',
 		title: 'Our Services',
 		description:
       'Our vision is to redefine the accounting experience, making excellence not just a standard but a catalyst for success in a dynamic and interconnected world.',
@@ -34,6 +37,7 @@ const landingData = {
 		},
 	},
 	frachiseProgram: {
+		id:'home_membership',
 		title: 'Membership Program',
 		description:
       'As industry leaders with decades of experience, the team at STONE Accounting Group understands the demanding nature of accounting work. Their membership model is designed to provide unparalleled flexibility and autonomy.',

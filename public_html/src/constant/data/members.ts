@@ -40,7 +40,7 @@ export const members: Personal[] = [
   },
   {
     id: "darencardow",
-    region: "Sunshine Coast, Queensland",
+    region: "Queensland",
     services: ["Business Advisory", "Accounting", "Taxation"],
     name: "Daren Cardow",
     imageUrl: "/images/members/DarenCardow.png",
@@ -48,7 +48,7 @@ export const members: Personal[] = [
   },
   {
     id: "paulwright",
-    region: "Portland, \nVictoria",
+    region: "Victoria",
     services: ["Business Advisory", "Accounting", "Taxation"],
     name: "Paul Wright",
     imageUrl: "/images/members/PaulWright.png",

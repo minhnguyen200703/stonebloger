@@ -35,6 +35,7 @@ const HeroSecondary: React.FC<Props> = ({ scrollYProgress }) => {
 		<m.div
 			style={{ scale, opacity, y, zIndex }}
 			className='absolute inset-0 grid top-[23%] overflow-hidden'
+			id={landingData.hero_2.id}
 		>
 			<div className='flex flex-col items-center text-center max-lg:container-center lg:max-w-[64.896vw] mx-auto'>
 				<SectionTitle>{landingData.hero_2.title}</SectionTitle>
