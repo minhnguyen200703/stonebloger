@@ -4,7 +4,8 @@ h1 {
   text-align: center;
 }
 
-.member-item {
+.member-item,
+.location-switch-bg {
   background: linear-gradient(90deg, #0055ff, #0033cc);
 }
 
@@ -41,4 +42,37 @@ h1 {
 }
 .member-socical i {
   transition: all 0.3s ease;
+}
+
+/* Locatio switch */
+
+.location-switch {
+  border-radius: 50px;
+  position: relative;
+}
+
+.location-switch.right::before {
+  transform: translateX(82%);
+}
+.location-switch::before {
+  content: "";
+  width: 55%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 20px;
+  top: 0;
+  left: 0;
+  transform: translateX(0);
+  position: absolute;
+  border: 1px solid #000;
+  transition: all 0.3s ease;
+}
+.location-switch button {
+  height: 35px;
+}
+.location-switch button,
+.location-switch button:hover {
+  border-radius: 15px;
+  background-color: transparent !important;
+  border-color: transparent !important;
 }
