@@ -34,9 +34,9 @@ const landingData = {
 		},
 	},
 	frachiseProgram: {
-		title: 'Franchise program',
+		title: 'Membership Program',
 		description:
-      'As industry leaders with decades of experience, the team at STONE Accounting Group understands the demanding nature of accounting work. Their franchisee model is designed to provide unparalleled flexibility and autonomy.',
+      'As industry leaders with decades of experience, the team at STONE Accounting Group understands the demanding nature of accounting work. Their membership model is designed to provide unparalleled flexibility and autonomy.',
 		cta: {
 			text: 'FIND OUT MORE',
 			href: '/franchise',

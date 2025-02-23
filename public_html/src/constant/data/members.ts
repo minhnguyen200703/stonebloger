@@ -28,7 +28,7 @@ export const members: Personal[] = [
     ],
     name: "Rodney Stone",
     imageUrl: "/images/members/RodneyStone.png",
-    location: Location.AU,
+    location: Location.AS,
   },
   {
     id: "lydiaatwell",
@@ -36,14 +36,6 @@ export const members: Personal[] = [
     services: ["Business Advisory", "Accounting", "Taxation"],
     name: "Lydia Atwell",
     imageUrl: "/images/members/LydiaAtwell.png",
-    location: Location.AS,
-  },
-  {
-    id: "paulwright",
-    region: "Portland, \nVictoria",
-    services: ["Business Advisory", "Accounting", "Taxation"],
-    name: "Paul Wright",
-    imageUrl: "/images/members/PaulWright.png",
     location: Location.AU,
   },
   {
@@ -54,6 +46,15 @@ export const members: Personal[] = [
     imageUrl: "/images/members/DarenCardow.png",
     location: Location.AU,
   },
+  {
+    id: "paulwright",
+    region: "Portland, \nVictoria",
+    services: ["Business Advisory", "Accounting", "Taxation"],
+    name: "Paul Wright",
+    imageUrl: "/images/members/PaulWright.png",
+    location: Location.AU,
+  },
+  
 ];
 
 export interface ProfileData {

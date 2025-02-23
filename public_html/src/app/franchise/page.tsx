@@ -108,13 +108,13 @@ const FranchisePage = () => {
                 <section className="franchise-section">
                     <div id="overview" className="franchise-content">
                         <div className="franchise-content-header">
-                            <h1 style={{ fontSize: '2.5rem' }}>Franchise Program</h1>
+                            <h1 style={{ fontSize: '2.5rem' }}>Membership Program</h1>
                         </div>
                         <div className="franchise-content-item">
-                            <p>As industry leaders with decades of experience, the team at STONE Accounting Group understands the demanding nature of accounting work. Our franchisee model is designed to provide unparalleled flexibility and autonomy.</p>
-                            <p>Unlike rigid, systematized workflows, STONE Accounting Group franchisees enjoy the freedom to manage their time and client responsibilities according to their personal and professional needs. Whether it’s setting their own office hours, taking extended vacations, or delegating administrative tasks to support staff, franchisees can structure their days around their priorities.</p>
-                            <p>This level of control helps franchisees avoid burnout common in traditional accounting practices. Instead, they can focus on building meaningful client relationships, optimizing efficiency with the latest financial technologies, and growing a sustainable business.</p>
-                            <p>With a business model built on steady, predictable cash flow, franchisees can enjoy security and profitability often unattainable in other start-up ventures. It’s an opportunity to establish a foothold in a thriving industry, supported by an industry-leading franchise system that knows accounting inside and out.</p>
+                            <p>As industry leaders with decades of experience, the team at STONE Accounting Group understands the demanding nature of accounting work. Our membership model is designed to provide unparalleled flexibility and autonomy.</p>
+                            <p>Unlike rigid, systematized workflows, STONE Accounting Group members enjoy the freedom to manage their time and client responsibilities according to their personal and professional needs. Whether it’s setting their own office hours, taking extended vacations, or delegating administrative tasks to support staff, members can structure their days around their priorities.</p>
+                            <p>This level of control helps members avoid burnout common in traditional accounting practices. Instead, they can focus on building meaningful client relationships, optimizing efficiency with the latest financial technologies, and growing a sustainable business.</p>
+                            <p>With a business model built on steady, predictable cash flow, members can enjoy security and profitability often unattainable in other start-up ventures. It’s an opportunity to establish a foothold in a thriving industry, supported by an industry-leading membership system that knows accounting inside and out.</p>
                         </div>
                     </div>
 
@@ -138,7 +138,7 @@ const FranchisePage = () => {
                             <ul>
                                 <li><strong>Benefit from advanced financial technologies</strong>, ensuring accessibility and efficiency in managing accounting practices</li>
                                 <li>Xero Tax Software Provided</li>
-                                <li><strong>Access to our Franchisee Portal</strong> for a wealth of resources, standard documents, standard spreadsheets, checklists, branding tools, etc</li>
+                                <li><strong>Access to our Membership Portal</strong> for a wealth of resources, standard documents, standard spreadsheets, checklists, branding tools, etc</li>
                             </ul>
                         </div>
                         <div id="flexibility" className="benefit-content">
@@ -151,7 +151,7 @@ const FranchisePage = () => {
                         <div id="support" className="benefit-content">
                             <ul>
                                 <li><strong>Technical Support Service</strong> from Head Office - with fast turnaround time</li>
-                                <li><strong>Comprehensive Induction Programme</strong> for new franchisees to ensure appropriate support and good habits are formed for success</li>
+                                <li><strong>Comprehensive Induction Programme</strong> for new members to ensure appropriate support and good habits are formed for success</li>
                                 <li><strong>Assistance with becoming a registered Tax Agent</strong> in your own right through our Tax Agent Accelerator Programme</li>
                                 <li><strong>Marketing and branding advice</strong> for assistance with your promotional activities</li>
                                 <li><strong>1st year of Professional Indemnity Insurance included</strong></li>
