@@ -27,12 +27,13 @@ const MemberItem = ({ member }: MemberItemProps) => {
         </div>
         <div className="member-info text-white w-full text-left">
           <div className="member-info-inner flex flex-col gap-2 h-full pt-6 pb-4">
-            <h3
+            <h4 style={{ marginBottom: "-12px", fontSize: "15px", fontWeight:"600" }}>STONE Accounting Group</h4>
+            <h4
               style={{ lineHeight: "1.8rem" }}
               className="region font-semibold"
             >
               {member.region}
-            </h3>
+            </h4>
             <div className="member-services">
               {member.services.map((m, i) => (
                 <div className="text-xm" key={i}>

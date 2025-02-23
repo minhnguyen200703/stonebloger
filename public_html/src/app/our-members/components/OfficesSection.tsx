@@ -13,7 +13,7 @@ const OfficesSection = () => {
   return (
     <section
       id="associate-offices"
-      className="text-center py-[40px] px-[40px] lg:px-[135px] w-full"
+      className="text-center py-[40px] px-[40px] lg:px-[70px] w-full"
     >
       <h1 style={{ fontSize: "2.5rem" }}>Associate Offices</h1>
       <div className="flex">
@@ -25,7 +25,7 @@ const OfficesSection = () => {
         />
       </div>
       <div className="pt-12">
-        <div className="w-full members-grid grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
+        <div className="w-full members-grid grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-6">
           {filteredOffice.map((m) => (
             <OfficeItem office={m} key={"office-" + m.id} />
           ))}

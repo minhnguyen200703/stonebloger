@@ -18,7 +18,7 @@ const OfficeItem = ({ office }: OfficeItemProps) => {
       transition={{ duration: 0.5 }}
     >
       <div className="w-full flex justify-center">
-        <div className="w-5/6">
+        <div className="w-full">
           <ShinyButton
             className="w-full"
             style={{
@@ -35,16 +35,20 @@ const OfficeItem = ({ office }: OfficeItemProps) => {
 
           <Flex
             gap={15}
-            className="flex flex-col items-left bg-gray-100 rounded-2xl overflow-hidden shadow-lg text-left"
+            className="flex flex-col items-left bg-gray-100 rounded-2xl overflow-hidden shadow-lg text-left min-h-20"
           >
             <div className="p-4 px-10 text-left">
               <h3 className="text-lg font-bold mb-2">{office.name}</h3>
-              <div className="text-base mb-2">
-                <strong>E.</strong> {office.email}
-              </div>
-              <div className="text-base mb-2">
-                <strong>A.</strong> {office.address}
-              </div>
+              {office.email && (
+                <div className="text-base mb-2">
+                  <strong>E.</strong> {office.email}
+                </div>
+              )}
+              {office.address && (
+                <div className="text-base mb-2">
+                  <strong>A.</strong> {office.address}
+                </div>
+              )}
             </div>
           </Flex>
         </div>

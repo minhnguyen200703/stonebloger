@@ -157,7 +157,7 @@ export const profileDatas: ProfileData[] = [
     contactDetails: {
       phone: "+61 414 359 783",
       email: "daren@stoneaccounting.com.au",
-      address: "Sunshine Coast, Queensland",
+      address: "M3-41, The Wharf Mooloolaba, 123 Parkyn Parade, MOOLOOLABA  QLD  4557",
     },
     services: ["Business Advisory", "Accounting", "Taxation"],
     certificates: ["CPA", "GAIDC", "Registered Tax Agent", "B. Bus"],

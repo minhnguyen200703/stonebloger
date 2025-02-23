@@ -13,7 +13,7 @@ const OurMemberSection = () => {
   return (
     <section
       id="our-members"
-      className="text-center py-[40px] px-[40px] lg:px-[135px] w-full"
+      className="text-center py-[40px] px-[40px] lg:px-[70px] w-full"
     >
       <h1 style={{ fontSize: "2.5rem" }}>Our Members</h1>
       <div className="flex">
