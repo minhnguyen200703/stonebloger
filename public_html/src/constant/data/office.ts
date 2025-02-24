@@ -46,16 +46,8 @@ export const offices: Office[] = [
     id: "Portland",
     region: "Portland, Victoria",
     name: "Head Office",
-    email: "hello@stoneaccounting.com.au",
+    email: "admin@stoneaccounting.com.au",
     address: "125b Percy Street, Portland, Victoria",
-    location: Location.AU,
-  },
-  {
-    id: "Sunshine",
-    region: "Sunshine Coast, Queensland",
-    name: "",
-    email: "hello@stoneaccounting.com.au",
-    address: "M3-41, The Wharf Mooloolaba, 123 Parkyn Parade, MOOLOOLABA QLD 4557",
     location: Location.AU,
   },
   {

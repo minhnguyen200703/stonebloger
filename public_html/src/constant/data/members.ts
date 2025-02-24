@@ -19,7 +19,7 @@ export const locationMapping: Record<number, string> = {
 export const members: Personal[] = [
   {
     id: "rodneystone",
-    region: "South East Asia",
+    region: "Ho Chi Minh City (Vietnam)",
     services: [
       "Business Advisory",
       "Accounting",
@@ -40,7 +40,7 @@ export const members: Personal[] = [
   },
   {
     id: "darencardow",
-    region: "Queensland",
+    region: "Sunshine Coast",
     services: ["Business Advisory", "Accounting", "Taxation"],
     name: "Daren Cardow",
     imageUrl: "/images/members/DarenCardow.png",
@@ -48,7 +48,7 @@ export const members: Personal[] = [
   },
   {
     id: "paulwright",
-    region: "Victoria",
+    region: "Portland",
     services: ["Business Advisory", "Accounting", "Taxation"],
     name: "Paul Wright",
     imageUrl: "/images/members/PaulWright.png",
@@ -82,12 +82,12 @@ export const profileDatas: ProfileData[] = [
     id: "rodneystone",
     name: "Rodney Stone",
     title: "Executive Director",
-    region: "South East Asia",
+    region: "Ho Chi Minh City (Vietnam)",
     description:
       "Rodney Stone serves as the Executive Director at STONE Accounting Group, overseeing operations in South East Asia, with the firm's office located in Ho Chi Minh City, Vietnam. He is focused on overseeing our global outsourcing operations, and developing the incubator program, which aims to support emerging accounting businesses and clients by providing essential resources, mentorship, and networking opportunities to help them thrive in a competitive market.",
     contactDetails: {
       phone: "+84 938 370 432",
-      email: "rodney@stoneaccounting.com.au",
+      email: "hcmc@stoneaccounting.com.au",
       address:
         "64/12 Street 34, An Khanh Ward, Thu Duc City, Ho Chi Minh City, Vietnam",
     },
@@ -156,8 +156,8 @@ export const profileDatas: ProfileData[] = [
     description:
       "With his reknowned expertise, a stellar local reputation, and unparalleled knowledge of the Sunshine Coast’s unique business environment, Daren is a natural fit for the STONE network. Backed by our innovative and extensive resources and commitment to exceptional service, Daren is set to elevate the client experience for businesses and individuals across the region.",
     contactDetails: {
-      phone: "+61 414 359 783",
-      email: "daren@stoneaccounting.com.au",
+      phone: "1300 712 446",
+      email: "scoast@stoneaccounting.com.au",
       address: "M3-41, The Wharf Mooloolaba, 123 Parkyn Parade, MOOLOOLABA  QLD  4557",
     },
     services: ["Business Advisory", "Accounting", "Taxation"],
@@ -167,6 +167,6 @@ export const profileDatas: ProfileData[] = [
     linkedInUrl: "https://www.linkedin.com/in/daren-cardow-91039031/", // Replace with actual LinkedIn URL
     imageUrl: "/images/members/DarenCardow.png", // Replace with actual image URL
     location:
-      "https://www.google.com/maps/d/embed?mid=1b_ZXGTM-eNegYe4wjX5WOcwwnHjOlY8&ehbc=2E312F",
+      "https://www.google.com/maps/d/embed?mid=1j1jSstHZhPrk5iDQ8glwshXJIZxCd-o&ehbc=2E312F",
   },
 ];
