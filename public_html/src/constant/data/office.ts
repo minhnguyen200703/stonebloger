@@ -62,7 +62,7 @@ export const offices: Office[] = [
     id: "HCMC",
     region: "Ho Chi Minh City, Viet Nam",
     name: "Head Office",
-    email: "hello@stoneaccoutning.com.au",
+    email: "hcmc@stoneaccounting.com.au",
     address: "64/12 Street 34, An Khanh Ward, Thu Duc City, Ho Chi Minh City, Vietnam",
     location: Location.AS,
   },
