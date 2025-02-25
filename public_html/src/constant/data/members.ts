@@ -19,7 +19,7 @@ export const locationMapping: Record<number, string> = {
 export const members: Personal[] = [
   {
     id: "rodneystone",
-    region: "Ho Chi Minh City (Vietnam)",
+    region: "South East Asia",
     services: [
       "Business Advisory",
       "Accounting",
