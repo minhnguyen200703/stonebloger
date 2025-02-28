@@ -87,7 +87,7 @@ export const profileDatas: ProfileData[] = [
       "Rodney Stone serves as the Executive Director at STONE Accounting Group, overseeing operations in South East Asia, with the firm's office located in Ho Chi Minh City, Vietnam. He is focused on overseeing our global outsourcing operations, and developing the incubator program, which aims to support emerging accounting businesses and clients by providing essential resources, mentorship, and networking opportunities to help them thrive in a competitive market.",
     contactDetails: {
       phone: "+84 938 370 432",
-      email: "hcmc@stoneaccounting.com.au",
+      email: "rodney@stoneaccounting.com.au",
       address:
         "64/12 Street 34, An Khanh Ward, Thu Duc City, Ho Chi Minh City, Vietnam",
     },
