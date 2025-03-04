@@ -13,6 +13,7 @@ import { fileURLToPath } from "url";
 import fs from "fs";
 import { newsController } from "./controllers/news.js";
 import { categoryController } from "./controllers/category.js";
+
 dotenv.config();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -22,10 +23,14 @@ const server = http.createServer(app);
 app.use(express.json());
 app.use(
 	cors({
-		origin: "*",
-		credentials: true,
+	  origin: "https://stoneaccounting.com.au", // Allow only your frontend
+	  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+	  allowedHeaders: "Content-Type, Authorization",
+	  credentials: true,
 	})
-);
+  );
+
+  
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.json({ limit: "10mb" }));
